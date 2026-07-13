@@ -41,13 +41,13 @@ const Hero = ({ title, subtitle, tagline, callToAction, callToAction2, image, is
                 {callToAction && (
                   <CTA
                     callToAction={callToAction}
-                    linkClass="btn border-amber-400 bg-amber-400 font-semibold text-slate-950 shadow-lg shadow-black/20 hover:border-amber-300 hover:bg-amber-300 hover:text-slate-950 focus:ring-amber-300 focus:ring-offset-slate-900 dark:border-amber-400 dark:bg-amber-400 dark:text-slate-950 dark:hover:border-amber-300 dark:hover:bg-amber-300 dark:hover:text-slate-950"
+                    linkClass="btn border-amber-400 bg-amber-400 font-semibold text-slate-950 shadow-lg shadow-black/20 hover:border-amber-300 hover:bg-amber-300 hover:text-slate-950 focus:ring-amber-300 focus:ring-offset-slate-900 dark:border-amber-300 dark:bg-amber-300 dark:text-slate-950 dark:hover:border-amber-200 dark:hover:bg-amber-200 dark:hover:text-slate-950"
                   />
                 )}
                 {callToAction2 && (
                   <CTA
                     callToAction={callToAction2}
-                    linkClass="btn border-slate-100 bg-slate-950/85 font-semibold text-white shadow-lg shadow-black/20 hover:border-white hover:bg-slate-900 hover:text-white focus:ring-white focus:ring-offset-slate-900 dark:border-slate-100 dark:bg-slate-950/85 dark:text-white dark:hover:border-white dark:hover:bg-slate-900 dark:hover:text-white"
+                    linkClass="btn border-slate-100 bg-slate-950/85 font-semibold text-white shadow-lg shadow-black/20 hover:border-white hover:bg-slate-900 hover:text-white focus:ring-white focus:ring-offset-slate-900 dark:border-teal-200 dark:bg-teal-900 dark:text-teal-50 dark:hover:border-teal-100 dark:hover:bg-teal-800 dark:hover:text-white"
                   />
                 )}
               </div>

@@ -211,7 +211,7 @@ const Header = () => {
                   <CTA
                     key={`item-action-${index}`}
                     callToAction={callToAction as CallToActionType}
-                    linkClass="btn m-1 border-amber-400 bg-amber-400 py-2 px-5 text-sm font-semibold text-slate-950 shadow-none hover:border-amber-300 hover:bg-amber-300 hover:text-slate-950 md:px-6"
+                    linkClass="btn m-1 border-amber-400 bg-amber-400 py-2 px-5 text-sm font-semibold text-slate-950 shadow-none hover:border-amber-300 hover:bg-amber-300 hover:text-slate-950 dark:border-amber-300 dark:bg-amber-300 dark:text-slate-950 dark:hover:border-amber-200 dark:hover:bg-amber-200 dark:hover:text-slate-950 md:px-6"
                   />
                 ))}
               </div>
