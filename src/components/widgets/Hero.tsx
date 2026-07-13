@@ -19,7 +19,7 @@ const Hero = ({ title, subtitle, tagline, callToAction, callToAction2, image, is
           className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(12,28,40,0.42)_0%,rgba(12,28,40,0.18)_42%,rgba(12,28,40,0.58)_100%)] dark:bg-[linear-gradient(180deg,rgba(6,16,24,0.62)_0%,rgba(6,16,24,0.32)_42%,rgba(6,16,24,0.72)_100%)]"
           aria-hidden="true"
         />
-        <div className="mx-auto flex min-h-[calc(100svh-4rem)] max-w-7xl items-center px-4 py-20 sm:px-6 md:min-h-[calc(100svh-5rem)] md:py-28">
+        <div className="mx-auto flex min-h-[100svh] max-w-7xl items-center px-4 py-20 sm:px-6 md:py-28">
           <div className="mx-auto max-w-4xl text-center">
             {tagline && (
               <p className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-amber-100 sm:text-base">
@@ -41,13 +41,13 @@ const Hero = ({ title, subtitle, tagline, callToAction, callToAction2, image, is
                 {callToAction && (
                   <CTA
                     callToAction={callToAction}
-                    linkClass="btn border-amber-400 bg-amber-400 font-semibold text-slate-950 shadow-lg shadow-black/20 hover:border-amber-300 hover:bg-amber-300 hover:text-slate-950 focus:ring-amber-300 focus:ring-offset-slate-900"
+                    linkClass="btn border-amber-400 bg-amber-400 font-semibold text-slate-950 shadow-lg shadow-black/20 hover:border-amber-300 hover:bg-amber-300 hover:text-slate-950 focus:ring-amber-300 focus:ring-offset-slate-900 dark:border-amber-400 dark:bg-amber-400 dark:text-slate-950 dark:hover:border-amber-300 dark:hover:bg-amber-300 dark:hover:text-slate-950"
                   />
                 )}
                 {callToAction2 && (
                   <CTA
                     callToAction={callToAction2}
-                    linkClass="btn border-white/70 bg-slate-950/20 font-semibold text-white shadow-lg shadow-black/10 hover:border-white hover:bg-white/15 hover:text-white focus:ring-white focus:ring-offset-slate-900"
+                    linkClass="btn border-slate-100 bg-slate-950/85 font-semibold text-white shadow-lg shadow-black/20 hover:border-white hover:bg-slate-900 hover:text-white focus:ring-white focus:ring-offset-slate-900 dark:border-slate-100 dark:bg-slate-950/85 dark:text-white dark:hover:border-white dark:hover:bg-slate-900 dark:hover:text-white"
                   />
                 )}
               </div>
