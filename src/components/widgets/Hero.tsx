@@ -20,7 +20,7 @@ const Hero = ({ title, subtitle, tagline, callToAction, callToAction2, image, is
           aria-hidden="true"
         />
         <div className="mx-auto flex min-h-[100svh] max-w-7xl items-center px-4 py-20 sm:px-6 md:py-28">
-          <div className="mx-auto max-w-4xl text-center">
+          <div id="heroContent" className="mx-auto max-w-4xl text-center">
             {tagline && (
               <p className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-amber-100 sm:text-base">
                 {tagline}

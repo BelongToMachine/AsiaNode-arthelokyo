@@ -18,6 +18,7 @@ const Header = () => {
 
   const ref = useRef(null);
   const [isLandingHeroVisible, setIsLandingHeroVisible] = useState(true);
+  const [isLandingTextBehindHeader, setIsLandingTextBehindHeader] = useState(false);
   const isOverLandingHero = isOnLandingPage && isLandingHeroVisible;
 
   const updatedIsDropdownOpen =
@@ -58,16 +59,22 @@ const Header = () => {
   useEffect(() => {
     if (!isOnLandingPage) {
       setIsLandingHeroVisible(false);
+      setIsLandingTextBehindHeader(false);
       return;
     }
 
     const updateHeaderState = () => {
       const hero = document.getElementById('heroOne');
+      const heroContent = document.getElementById('heroContent');
       const header = document.getElementById('header');
       const heroBottom = hero?.getBoundingClientRect().bottom ?? 0;
       const headerHeight = header?.getBoundingClientRect().height ?? 0;
+      const contentBounds = heroContent?.getBoundingClientRect();
 
       setIsLandingHeroVisible(heroBottom > headerHeight);
+      setIsLandingTextBehindHeader(
+        Boolean(contentBounds && contentBounds.top <= headerHeight && contentBounds.bottom > headerHeight)
+      );
     };
 
     updateHeaderState();
@@ -90,7 +97,9 @@ const Header = () => {
         isOnLandingPage
           ? `fixed ${
               isOverLandingHero
-                ? 'bg-transparent text-white dark:bg-transparent'
+                ? isLandingTextBehindHeader
+                  ? 'bg-slate-950/65 text-white backdrop-blur-md backdrop-saturate-150 dark:bg-slate-950/75'
+                  : 'bg-transparent text-white dark:bg-transparent'
                 : 'bg-white text-gray-900 shadow-sm dark:bg-slate-900 dark:text-slate-200'
             }`
           : 'bg-white dark:bg-slate-900 md:bg-white/90 md:backdrop-blur-sm dark:md:bg-slate-900/90'
