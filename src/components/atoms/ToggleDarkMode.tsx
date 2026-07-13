@@ -4,7 +4,11 @@ import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { IconSun, IconMoon } from '@tabler/icons-react';
 
-const ToggleDarkMode = () => {
+type ToggleDarkModeProps = {
+  isOnLandingPage?: boolean;
+};
+
+const ToggleDarkMode = ({ isOnLandingPage = false }: ToggleDarkModeProps) => {
   const [mounted, setMounted] = useState<boolean>(false);
   const { systemTheme, theme, setTheme } = useTheme();
 
@@ -19,7 +23,11 @@ const ToggleDarkMode = () => {
   return (
     <button
       onClick={handleOnClick}
-      className="inline-block rounded-lg p-2.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+      className={`inline-block rounded-lg p-2.5 text-sm focus:outline-none focus:ring-4 ${
+        isOnLandingPage
+          ? 'text-white hover:bg-white/15 focus:ring-white/50'
+          : 'text-gray-500 hover:bg-gray-100 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700'
+      }`}
       aria-label="Toggle Dark Mode"
     >
       {mounted ? (

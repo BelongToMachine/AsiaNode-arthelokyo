@@ -226,6 +226,7 @@ type Dropdown = {
 type ToggleMenuProps = {
   handleToggleMenuOnClick: MouseEventHandler<HTMLButtonElement>;
   isToggleMenuOpen: boolean;
+  isOnLandingPage?: boolean;
 };
 
 type WindowSize = {

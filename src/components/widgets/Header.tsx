@@ -1,7 +1,8 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { IconRss } from '@tabler/icons-react';
+import { usePathname } from 'next/navigation';
 import { useOnClickOutside } from '~/hooks/useOnClickOutside';
 import ToggleDarkMode from '~/components/atoms/ToggleDarkMode';
 import Link from 'next/link';
@@ -13,8 +14,11 @@ import { CallToActionType } from '~/shared/types';
 
 const Header = () => {
   const { links, actions, isSticky, showToggleTheme, showRssFeed, position } = headerData;
+  const isOnLandingPage = usePathname() === '/';
 
   const ref = useRef(null);
+  const [isLandingHeroVisible, setIsLandingHeroVisible] = useState(true);
+  const isOverLandingHero = isOnLandingPage && isLandingHeroVisible;
 
   const updatedIsDropdownOpen =
     links &&
@@ -51,14 +55,47 @@ const Header = () => {
     setIsToggleMenuOpen(!isToggleMenuOpen);
   };
 
+  useEffect(() => {
+    if (!isOnLandingPage) {
+      setIsLandingHeroVisible(false);
+      return;
+    }
+
+    const updateHeaderState = () => {
+      const hero = document.getElementById('heroOne');
+      const header = document.getElementById('header');
+      const heroBottom = hero?.getBoundingClientRect().bottom ?? 0;
+      const headerHeight = header?.getBoundingClientRect().height ?? 0;
+
+      setIsLandingHeroVisible(heroBottom > headerHeight);
+    };
+
+    updateHeaderState();
+    window.addEventListener('scroll', updateHeaderState, { passive: true });
+    window.addEventListener('resize', updateHeaderState);
+
+    return () => {
+      window.removeEventListener('scroll', updateHeaderState);
+      window.removeEventListener('resize', updateHeaderState);
+    };
+  }, [isOnLandingPage]);
+
   useOnClickOutside(ref, () => {
     setIsDropdownOpen(updatedIsDropdownOpen as boolean[]);
   });
 
   return (
     <header
-      className={`top-0 z-40 mx-auto w-full flex-none bg-white transition-all duration-100 ease-in dark:bg-slate-900 md:bg-white/90 md:backdrop-blur-sm dark:md:bg-slate-900/90 ${
-        isSticky ? 'sticky' : 'relative'
+      className={`top-0 z-40 mx-auto w-full flex-none transition-colors duration-300 ease-out ${
+        isOnLandingPage
+          ? `fixed ${
+              isOverLandingHero
+                ? 'bg-transparent text-white dark:bg-transparent'
+                : 'bg-white text-gray-900 shadow-sm dark:bg-slate-900 dark:text-slate-200'
+            }`
+          : 'bg-white dark:bg-slate-900 md:bg-white/90 md:backdrop-blur-sm dark:md:bg-slate-900/90'
+      } ${
+        isOnLandingPage ? 'fixed' : isSticky ? 'sticky' : 'relative'
       } ${isToggleMenuOpen ? 'h-screen md:h-auto' : 'h-auto'}`}
       id="header"
     >
@@ -77,16 +114,20 @@ const Header = () => {
               isToggleMenuOpen ? handleToggleMenuOnClick() : setIsDropdownOpen(updatedIsDropdownOpen as boolean[])
             }
           >
-            <Logo />
+            <Logo isOnLandingPage={isOverLandingHero && !isToggleMenuOpen} />
           </Link>
           <div className="flex items-center md:hidden">
-            <ToggleMenu handleToggleMenuOnClick={handleToggleMenuOnClick} isToggleMenuOpen={isToggleMenuOpen} />
+            <ToggleMenu
+              handleToggleMenuOnClick={handleToggleMenuOnClick}
+              isToggleMenuOpen={isToggleMenuOpen}
+              isOnLandingPage={isOverLandingHero && !isToggleMenuOpen}
+            />
           </div>
         </div>
         <nav
           className={`${isToggleMenuOpen ? 'block px-3' : 'hidden'} h-screen md:w-full ${
             position === 'right' ? 'justify-end' : position === 'left' ? 'justify-start' : 'justify-center'
-          } w-auto overflow-y-auto dark:text-slate-200 md:mx-5 md:flex md:h-auto md:items-center md:overflow-visible`}
+          } w-auto overflow-y-auto ${isOverLandingHero ? 'text-white' : 'dark:text-slate-200'} md:mx-5 md:flex md:h-auto md:items-center md:overflow-visible`}
           aria-label="Main navigation"
         >
           <ul
@@ -99,7 +140,9 @@ const Header = () => {
                   {links && links.length ? (
                     <>
                       <button
-                        className="flex items-center px-4 py-3 font-medium transition duration-150 ease-in-out hover:text-gray-900 dark:hover:text-white"
+                        className={`flex items-center px-4 py-3 font-medium transition duration-150 ease-in-out ${
+                          isOverLandingHero ? 'text-white hover:text-amber-100' : 'hover:text-gray-900 dark:hover:text-white'
+                        }`}
                         onClick={() => handleDropdownOnClick(index)}
                       >
                         {label}{' '}
@@ -133,7 +176,9 @@ const Header = () => {
                     </>
                   ) : (
                     <Link
-                      className="flex items-center px-4 py-3 font-medium transition duration-150 ease-in-out hover:text-gray-900 dark:hover:text-white"
+                      className={`flex items-center px-4 py-3 font-medium transition duration-150 ease-in-out ${
+                        isOverLandingHero ? 'text-white hover:text-amber-100' : 'hover:text-gray-900 dark:hover:text-white'
+                      }`}
                       href={href as string}
                       onClick={() => (isToggleMenuOpen ? handleToggleMenuOnClick() : handleDropdownOnClick(index))}
                     >
@@ -150,7 +195,7 @@ const Header = () => {
           } fixed bottom-0 left-0 w-full justify-end p-3 md:static md:mb-0 md:flex md:w-auto md:self-center md:p-0 md:bg-transparent md:dark:bg-transparent md:border-none bg-white dark:bg-slate-900 border-t border-gray-200 dark:border-slate-600`}
         >
           <div className="flex w-full items-center justify-between md:w-auto">
-            {showToggleTheme && <ToggleDarkMode />}
+            {showToggleTheme && <ToggleDarkMode isOnLandingPage={isOverLandingHero} />}
             {showRssFeed && (
               <Link
                 className="text-muted inline-flex items-center rounded-lg p-2.5 text-sm hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
@@ -166,7 +211,7 @@ const Header = () => {
                   <CTA
                     key={`item-action-${index}`}
                     callToAction={callToAction as CallToActionType}
-                    linkClass="btn btn-primary m-1 py-2 px-5 text-sm font-semibold shadow-none md:px-6"
+                    linkClass="btn m-1 border-amber-400 bg-amber-400 py-2 px-5 text-sm font-semibold text-slate-950 shadow-none hover:border-amber-300 hover:bg-amber-300 hover:text-slate-950 md:px-6"
                   />
                 ))}
               </div>
