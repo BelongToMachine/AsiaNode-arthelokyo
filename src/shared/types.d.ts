@@ -241,6 +241,7 @@ type HeroProps = {
   callToAction?: CallToActionType;
   callToAction2?: CallToActionType;
   image?: Image;
+  isImageBackground?: boolean;
 };
 
 type FAQsProps = Widget & {

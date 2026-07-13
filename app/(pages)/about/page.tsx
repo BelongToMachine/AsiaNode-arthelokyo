@@ -1,49 +1,28 @@
 import type { Metadata } from 'next';
-import Contact from '~/components/widgets/Contact';
-
-import FAQs from '~/components/widgets/FAQs';
+import Content from '~/components/widgets/Content';
 import Features from '~/components/widgets/Features';
-import Features3 from '~/components/widgets/Features3';
-import Features4 from '~/components/widgets/Features4';
-import Hero2 from '~/components/widgets/Hero2';
-import Stats from '~/components/widgets/Stats';
+import Hero from '~/components/widgets/Hero';
 import Steps from '~/components/widgets/Steps';
-import Team2 from '~/components/widgets/Team2';
-import Testimonials2 from '~/components/widgets/Testimonials2';
-import {
-  contactAbout,
-  faqsAbout,
-  featuresFourAbout,
-  featuresFourAboutTwo,
-  features3About,
-  hero2About,
-  statsAbout,
-  stepsAbout,
-  testimonials2About,
-  featuresAbout,
-  teamAbout,
-} from '~/shared/data/pages/about.data';
+import { contentHomeOne, contentHomeTwo, featuresHome, stepsHome } from '~/shared/data/pages/home.data';
 
-export const metadata: Metadata = {
-  title: `About us`,
+export const metadata: Metadata = { title: 'About Asianode' };
+
+const hero = {
+  tagline: 'About Asianode',
+  title: 'A locally rooted partner for global ambition.',
+  subtitle:
+    'Asianode is a Türkiye-based digital business organisation connecting brands, creators, and channels to build sustainable local growth.',
+  callToAction: { text: 'Start a conversation', href: '/contact' },
 };
 
-const Page = () => {
+export default function Page() {
   return (
     <>
-      <Hero2 {...hero2About} />
-      <Stats {...statsAbout} />
-      <Features4 {...featuresFourAbout} />
-      <Features4 {...featuresFourAboutTwo} />
-      <Steps {...stepsAbout} />
-      <Features3 {...features3About} />
-      <Features {...featuresAbout} />
-      <Team2 {...teamAbout} />
-      <Testimonials2 {...testimonials2About} />
-      <FAQs {...faqsAbout} />
-      <Contact {...contactAbout} />
+      <Hero {...hero} />
+      <Features {...featuresHome} />
+      <Content {...contentHomeOne} />
+      <Content {...contentHomeTwo} />
+      <Steps {...stepsHome} />
     </>
   );
-};
-
-export default Page;
+}

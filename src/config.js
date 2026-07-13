@@ -1,10 +1,11 @@
 module.exports.SITE = {
-  name: 'TailNext',
+  name: 'Asianode',
 
-  origin: 'https://tailnext.vercel.app',
+  origin: 'https://asianode.com',
   basePathname: '/',
   trailingSlash: false,
 
-  title: 'TailNext — Your website with Next.js + Tailwind CSS',
-  description: 'TailNext is a free and ready to start template to make your website using Next.js and Tailwind CSS.',
+  title: 'Asianode — Local growth partner for brands in Türkiye',
+  description:
+    'Asianode helps global brands grow in Türkiye through creator partnerships, social commerce, channel development, and local execution.',
 };

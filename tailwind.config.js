@@ -11,7 +11,7 @@ module.exports = {
         secondary: colors.blue,
       },
       fontFamily: {
-        sans: ['var(--font-custom)', ...defaultTheme.fontFamily.sans],
+        sans: ['"Avenir Next"', '"Helvetica Neue"', ...defaultTheme.fontFamily.sans],
       },
     },
   },
