@@ -1,7 +1,9 @@
 import {
   IconBrandTiktok,
+  IconBrandLinkedin,
   IconChartArrowsVertical,
   IconMapPin,
+  IconMail,
   IconMessages,
   IconNetwork,
   IconRocket,
@@ -174,6 +176,68 @@ export const faqs2Home: FAQsProps = {
       title: 'How do we start?',
       description: 'Start with a conversation about your category, goals, timeline, and existing market presence. We will then identify the most useful next step together.',
     },
+    {
+      title: 'Do you support market entry as well as existing operations?',
+      description: 'Yes. We can support brands that are preparing to enter Türkiye as well as those seeking to strengthen an established local presence.',
+    },
+    {
+      title: 'Can Asianode work alongside our current agencies and teams?',
+      description: 'Yes. We can work as a locally connected partner alongside your internal team, agencies, creators, and channel partners.',
+    },
+    {
+      title: 'What should we include in an initial enquiry?',
+      description: 'Please share your category, target audience, current market position, desired outcome, and timeline so we can prepare for a useful first conversation.',
+    },
+  ],
+};
+
+// Placeholder profiles retained from the original template. Replace these with
+// verified Asianode team details before publishing them as company information.
+export const teamHome: TeamProps = {
+  id: 'team',
+  hasBackground: false,
+  header: {
+    tagline: 'Our people',
+    title: 'Meet the team',
+    subtitle: 'Placeholder profiles for the team section. Verified Asianode team information will be added here.',
+  },
+  teams: [
+    {
+      name: 'Cindy Belcher',
+      occupation: 'SEO Consultant',
+      image: { src: 'https://images.unsplash.com/photo-1637858868799-7f26a0640eb6?auto=format&fit=crop&w=1180&q=80', alt: 'Placeholder team member' },
+      items: [
+        { title: 'LinkedIn profile', icon: IconBrandLinkedin, href: '#' },
+        { title: 'Contact by email', icon: IconMail, href: '#' },
+      ],
+    },
+    {
+      name: 'Toby Foster',
+      occupation: 'Marketing Tech',
+      image: { src: 'https://images.unsplash.com/photo-1614583224978-f05ce51ef5fa?auto=format&fit=crop&w=2172&q=80', alt: 'Placeholder team member' },
+      items: [
+        { title: 'LinkedIn profile', icon: IconBrandLinkedin, href: '#' },
+        { title: 'Contact by email', icon: IconMail, href: '#' },
+      ],
+    },
+    {
+      name: 'Clark Bourne',
+      occupation: 'Content Manager',
+      image: { src: 'https://images.unsplash.com/photo-1639628735078-ed2f038a193e?auto=format&fit=crop&w=1674&q=80', alt: 'Placeholder team member' },
+      items: [
+        { title: 'LinkedIn profile', icon: IconBrandLinkedin, href: '#' },
+        { title: 'Contact by email', icon: IconMail, href: '#' },
+      ],
+    },
+    {
+      name: 'Bella Chase',
+      occupation: 'UX Designer',
+      image: { src: 'https://images.unsplash.com/photo-1628260412297-a3377e45006f?auto=format&fit=crop&w=1674&q=80', alt: 'Placeholder team member' },
+      items: [
+        { title: 'LinkedIn profile', icon: IconBrandLinkedin, href: '#' },
+        { title: 'Contact by email', icon: IconMail, href: '#' },
+      ],
+    },
   ],
 };
 
@@ -217,4 +281,3 @@ export const callToAction2Home: CallToActionProps = {
 // not rendered on the Asianode marketing site until verified company data exists.
 export const pricingHome: PricingProps = { id: 'pricing-story', prices: [] };
 export const testimonialsHome: TestimonialsProps = { id: 'testimonials-story', testimonials: [] };
-export const teamHome: TeamProps = { id: 'team-story', teams: [] };
