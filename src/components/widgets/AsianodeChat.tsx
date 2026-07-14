@@ -1,6 +1,6 @@
 'use client';
 
-import { IconArrowUp, IconLoader2, IconMessageCircle2, IconSparkles } from '@tabler/icons-react';
+import { IconArrowUp, IconLoader2, IconMessageCircle2, IconSparkles, IconX } from '@tabler/icons-react';
 import { FormEvent, KeyboardEvent, useEffect, useRef, useState } from 'react';
 
 type ChatMessage = {
@@ -34,7 +34,77 @@ function getSseContent(buffer: string) {
   return { content, remainder };
 }
 
-export default function AsianodeChat({ embedded = false }: { embedded?: boolean }) {
+function InlineMarkdown({ value }: { value: string }) {
+  return value.split(/(\*\*[^*]+\*\*)/g).map((part, index) => {
+    const isBold = part.startsWith('**') && part.endsWith('**');
+    return isBold ? (
+      <strong key={index} className="font-semibold text-slate-900 dark:text-white">
+        {part.slice(2, -2)}
+      </strong>
+    ) : (
+      part
+    );
+  });
+}
+
+function AssistantResponse({ content }: { content: string }) {
+  const blocks = content
+    .trim()
+    .split(/\n\s*\n/)
+    .filter(Boolean);
+
+  return (
+    <div className="space-y-4">
+      {blocks.map((block, index) => {
+        const lines = block.split('\n').filter(Boolean);
+        const isList = lines.every((line) => /^[-*]\s+/.test(line));
+        const nextStep = block.match(/^\*\*Practical next step:\*\*\s*([\s\S]+)$/i);
+
+        if (nextStep) {
+          return (
+            <div
+              key={index}
+              className="border-l-2 border-amber-400 bg-amber-50 px-3 py-3 text-slate-700 dark:bg-amber-300/10 dark:text-slate-200"
+            >
+              <div className="mb-1 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-amber-800 dark:text-amber-300">
+                <IconSparkles className="h-3.5 w-3.5" aria-hidden="true" /> Next step
+              </div>
+              <p className="text-sm leading-6">
+                <InlineMarkdown value={nextStep[1]} />
+              </p>
+            </div>
+          );
+        }
+
+        if (isList) {
+          return (
+            <ul key={index} className="space-y-3">
+              {lines.map((line, itemIndex) => (
+                <li key={itemIndex} className="flex gap-2 text-sm leading-6">
+                  <span
+                    className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500 dark:bg-amber-300"
+                    aria-hidden="true"
+                  />
+                  <span>
+                    <InlineMarkdown value={line.replace(/^[-*]\s+/, '')} />
+                  </span>
+                </li>
+              ))}
+            </ul>
+          );
+        }
+
+        return (
+          <p key={index} className="text-sm leading-6">
+            <InlineMarkdown value={block} />
+          </p>
+        );
+      })}
+    </div>
+  );
+}
+
+export default function AsianodeChat({ embedded = false, onClose }: { embedded?: boolean; onClose?: () => void }) {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState('');
   const [isSending, setIsSending] = useState(false);
@@ -112,11 +182,11 @@ export default function AsianodeChat({ embedded = false }: { embedded?: boolean 
   };
 
   return (
-    <section className={embedded ? '' : 'min-h-[calc(100vh-5rem)] bg-stone-50 py-12 dark:bg-slate-950 sm:py-16'}>
+    <section className={embedded ? 'h-full' : 'min-h-[calc(100vh-5rem)] bg-stone-50 py-12 dark:bg-slate-950 sm:py-16'}>
       <div
         className={
           embedded
-            ? 'mx-auto max-w-3xl'
+            ? 'mx-auto h-full max-w-3xl'
             : 'mx-auto grid max-w-6xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.72fr_1.28fr] lg:gap-14'
         }
       >
@@ -139,21 +209,35 @@ export default function AsianodeChat({ embedded = false }: { embedded?: boolean 
           </div>
         )}
 
-        <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xl shadow-slate-900/5 dark:border-slate-700 dark:bg-slate-900 dark:shadow-black/20">
-          <div className="flex items-center gap-3 border-b border-slate-200 px-5 py-4 dark:border-slate-700">
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-amber-100 text-amber-800 dark:bg-amber-300 dark:text-slate-950">
-              <IconMessageCircle2 className="h-5 w-5" aria-hidden="true" />
-            </span>
-            <div>
-              <h2 className="font-semibold text-slate-900 dark:text-white">Start a conversation</h2>
-              <p className="text-sm text-slate-500 dark:text-slate-400">General market and partnership guidance</p>
+        <div
+          className={`overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xl shadow-slate-900/5 dark:border-slate-700 dark:bg-slate-900 dark:shadow-black/20 ${embedded ? 'flex h-full flex-col rounded-none border-0 shadow-none' : ''}`}
+        >
+          <div className="flex items-center justify-between border-b border-slate-200 px-5 py-4 dark:border-slate-700">
+            <div className="flex items-center gap-3">
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-amber-100 text-amber-800 dark:bg-amber-300 dark:text-slate-950">
+                <IconMessageCircle2 className="h-5 w-5" aria-hidden="true" />
+              </span>
+              <div>
+                <h2 className="font-semibold text-slate-900 dark:text-white">Start a conversation</h2>
+                <p className="text-sm text-slate-500 dark:text-slate-400">General market and partnership guidance</p>
+              </div>
             </div>
+            {onClose && (
+              <button
+                type="button"
+                onClick={onClose}
+                className="rounded p-1 text-slate-500 transition hover:bg-slate-200 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-amber-500 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white"
+                aria-label="Close Asianode Advisor"
+              >
+                <IconX className="h-5 w-5" />
+              </button>
+            )}
           </div>
 
-          <div className="flex min-h-[27rem] flex-col">
+          <div className={`flex flex-col ${embedded ? 'min-h-0 flex-1' : 'min-h-[27rem]'}`}>
             <div className="flex-1 space-y-5 overflow-y-auto px-5 py-6" aria-live="polite">
               {messages.length === 0 ? (
-                <div className="flex h-full flex-col justify-center py-8">
+                <div className="flex h-full flex-col justify-start py-2">
                   <p className="max-w-md text-xl font-medium leading-relaxed text-slate-800 dark:text-slate-100">
                     Where would you like to begin?
                   </p>
@@ -178,13 +262,21 @@ export default function AsianodeChat({ embedded = false }: { embedded?: boolean 
                     className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
                     <div
-                      className={`max-w-[88%] whitespace-pre-wrap rounded-2xl px-4 py-3 text-[15px] leading-7 sm:max-w-[80%] ${
+                      className={`max-w-[88%] rounded-2xl px-4 py-3 text-[15px] leading-7 sm:max-w-[80%] ${
                         message.role === 'user'
                           ? 'rounded-br-sm bg-slate-900 text-white dark:bg-amber-300 dark:text-slate-950'
                           : 'rounded-bl-sm bg-stone-100 text-slate-700 dark:bg-slate-800 dark:text-slate-200'
                       }`}
                     >
-                      {message.content || <IconLoader2 className="h-5 w-5 animate-spin" aria-label="Thinking" />}
+                      {message.content ? (
+                        message.role === 'assistant' ? (
+                          <AssistantResponse content={message.content} />
+                        ) : (
+                          message.content
+                        )
+                      ) : (
+                        <IconLoader2 className="h-5 w-5 animate-spin" aria-label="Thinking" />
+                      )}
                     </div>
                   </div>
                 ))
