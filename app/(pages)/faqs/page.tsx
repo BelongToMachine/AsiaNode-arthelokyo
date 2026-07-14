@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 
-import CallToAction from '~/components/widgets/CallToAction';
-import FAQs4 from '~/components/widgets/FAQs4';
-import { heroFaqs, callToActionFaqs, faqs4Faqs } from '~/shared/data/pages/faqs.data';
+import FaqAdvisor from '~/components/widgets/FaqAdvisor';
+import { heroFaqs } from '~/shared/data/pages/faqs.data';
 import Hero from '~/components/widgets/Hero';
 
 export const metadata: Metadata = {
@@ -13,8 +12,7 @@ const Page = () => {
   return (
     <>
       <Hero {...heroFaqs} />
-      <FAQs4 {...faqs4Faqs} />
-      <CallToAction {...callToActionFaqs} />
+      <FaqAdvisor />
     </>
   );
 };
