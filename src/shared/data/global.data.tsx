@@ -16,8 +16,8 @@ export const announcementData: AnnouncementProps = {
 export const headerData: HeaderProps = {
   links: [
     {
-      label: 'Services',
-      href: '/services',
+      label: 'FAQs',
+      href: '/faqs',
     },
     {
       label: 'About',
@@ -59,19 +59,19 @@ export const footerData: FooterProps = {
       links: [
         {
           label: 'Creator partnerships',
-          href: '/services',
+          href: '/contact',
         },
         {
           label: 'Social commerce',
-          href: '/services',
+          href: '/contact',
         },
         {
           label: 'Channel development',
-          href: '/services',
+          href: '/contact',
         },
         {
           label: 'Local operations',
-          href: '/services',
+          href: '/contact',
         },
         {
           label: 'Brand partnerships',

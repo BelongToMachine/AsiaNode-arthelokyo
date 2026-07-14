@@ -5,6 +5,7 @@ import { SITE } from '~/config.js';
 import Providers from '~/components/atoms/Providers';
 import Header from '~/components/widgets/Header';
 import Footer2 from '~/components/widgets/Footer2';
+import FloatingAdvisor from '~/components/widgets/FloatingAdvisor';
 
 import '~/assets/styles/base.css';
 
@@ -32,6 +33,7 @@ export default function RootLayout({ children }: LayoutProps) {
           <Header />
           <main>{children}</main>
           <Footer2 />
+          <FloatingAdvisor />
         </Providers>
       </body>
     </html>

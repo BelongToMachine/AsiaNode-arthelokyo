@@ -271,8 +271,8 @@ export const callToAction2Home: CallToActionProps = {
   subtitle: 'Bring us your next market question. We will help you turn it into a focused, executable plan.',
   callToAction: { text: 'Contact Asianode', href: '/contact' },
   items: [
-    { title: 'Creator partnerships', description: 'Find the right local voices for your brand.', href: '/services' },
-    { title: 'Market activation', description: 'Connect your strategy to local execution.', href: '/services' },
+    { title: 'Creator partnerships', description: 'Find the right local voices for your brand.', href: '/contact' },
+    { title: 'Market activation', description: 'Connect your strategy to local execution.', href: '/contact' },
     { title: 'Business enquiry', description: 'Start a direct partnership conversation.', href: '/contact' },
   ],
 };
