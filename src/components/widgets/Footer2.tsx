@@ -1,4 +1,5 @@
 import { footerData2 } from '~/shared/data/global.data';
+import CookiePreferencesButton from '~/components/widgets/CookiePreferencesButton';
 
 const Footer2 = () => {
   const { links, columns, socials, footNote } = footerData2;
@@ -52,6 +53,10 @@ const Footer2 = () => {
                 {links.length - 1 !== index && <span className="mr-1 rtl:mr-0 rtl:ml-1"> · </span>}
               </li>
             ))}
+          <li>
+            <span className="mr-1 rtl:mr-0 rtl:ml-1"> · </span>
+            <CookiePreferencesButton />
+          </li>
         </ul>
         {footNote}
       </div>
