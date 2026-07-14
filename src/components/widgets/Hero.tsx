@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { HeroProps } from '~/shared/types';
 import CTA from '../common/CTA';
+import HeroParallaxContent from './HeroParallaxContent';
 
 const Hero = ({ title, subtitle, tagline, callToAction, callToAction2, image, isImageBackground }: HeroProps) => {
   if (image && isImageBackground) {
@@ -20,38 +21,44 @@ const Hero = ({ title, subtitle, tagline, callToAction, callToAction2, image, is
           aria-hidden="true"
         />
         <div className="mx-auto flex min-h-[100svh] max-w-7xl items-center px-4 py-20 sm:px-6 md:py-28">
-          <div id="heroContent" className="mx-auto max-w-4xl text-center">
-            {tagline && (
-              <p className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-amber-100 sm:text-base">
-                {tagline}
-              </p>
-            )}
-            {title && (
-              <h1 className="font-heading mx-auto mb-6 max-w-4xl text-4xl font-bold leading-[1.04] tracking-tight text-white drop-shadow-[0_2px_18px_rgba(0,0,0,0.35)] sm:text-5xl md:text-6xl lg:text-7xl">
-                {title}
-              </h1>
-            )}
-            <div className="mx-auto max-w-2xl">
-              {subtitle && (
-                <p className="mb-9 text-lg font-normal leading-relaxed text-slate-100 drop-shadow-[0_1px_12px_rgba(0,0,0,0.35)] sm:text-xl">
-                  {subtitle}
+          <div id="heroContent" className="mx-auto w-full max-w-4xl text-center">
+            <HeroParallaxContent distance={148}>
+              {tagline && (
+                <p className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-amber-100 sm:text-base">
+                  {tagline}
                 </p>
               )}
-              <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
-                {callToAction && (
-                  <CTA
-                    callToAction={callToAction}
-                    linkClass="btn border-amber-400 bg-amber-400 font-semibold text-slate-950 shadow-lg shadow-black/20 hover:border-amber-300 hover:bg-amber-300 hover:text-slate-950 focus:ring-amber-300 focus:ring-offset-slate-900 dark:border-amber-300 dark:bg-amber-300 dark:text-slate-950 dark:hover:border-amber-200 dark:hover:bg-amber-200 dark:hover:text-slate-950"
-                  />
-                )}
-                {callToAction2 && (
-                  <CTA
-                    callToAction={callToAction2}
-                    linkClass="btn border-slate-100 bg-slate-950/85 font-semibold text-white shadow-lg shadow-black/20 hover:border-white hover:bg-slate-900 hover:text-white focus:ring-white focus:ring-offset-slate-900 dark:border-teal-200 dark:bg-teal-900 dark:text-teal-50 dark:hover:border-teal-100 dark:hover:bg-teal-800 dark:hover:text-white"
-                  />
-                )}
+              {title && (
+                <h1 className="font-heading mx-auto mb-6 max-w-4xl text-4xl font-bold leading-[1.04] tracking-tight text-white drop-shadow-[0_2px_18px_rgba(0,0,0,0.35)] sm:text-5xl md:text-6xl lg:text-7xl">
+                  {title}
+                </h1>
+              )}
+              {subtitle && (
+                <div className="mx-auto max-w-2xl">
+                  <p className="mb-9 text-lg font-normal leading-relaxed text-slate-100 drop-shadow-[0_1px_12px_rgba(0,0,0,0.35)] sm:text-xl">
+                    {subtitle}
+                  </p>
+                </div>
+              )}
+            </HeroParallaxContent>
+            <HeroParallaxContent distance={228}>
+              <div className="mx-auto max-w-2xl">
+                <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+                  {callToAction && (
+                    <CTA
+                      callToAction={callToAction}
+                      linkClass="btn border-amber-400 bg-amber-400 font-semibold text-slate-950 shadow-lg shadow-black/20 hover:border-amber-300 hover:bg-amber-300 hover:text-slate-950 focus:ring-amber-300 focus:ring-offset-slate-900 dark:border-amber-300 dark:bg-amber-300 dark:text-slate-950 dark:hover:border-amber-200 dark:hover:bg-amber-200 dark:hover:text-slate-950"
+                    />
+                  )}
+                  {callToAction2 && (
+                    <CTA
+                      callToAction={callToAction2}
+                      linkClass="btn border-slate-100 bg-slate-950/85 font-semibold text-white shadow-lg shadow-black/20 hover:border-white hover:bg-slate-900 hover:text-white focus:ring-white focus:ring-offset-slate-900 dark:border-teal-200 dark:bg-teal-900 dark:text-teal-50 dark:hover:border-teal-100 dark:hover:bg-teal-800 dark:hover:text-white"
+                    />
+                  )}
+                </div>
               </div>
-            </div>
+            </HeroParallaxContent>
           </div>
         </div>
       </section>
