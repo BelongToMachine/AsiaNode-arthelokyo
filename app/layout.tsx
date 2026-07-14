@@ -6,6 +6,7 @@ import Providers from '~/components/atoms/Providers';
 import Header from '~/components/widgets/Header';
 import Footer2 from '~/components/widgets/Footer2';
 import FloatingAdvisor from '~/components/widgets/FloatingAdvisor';
+import CookieConsent from '~/components/widgets/CookieConsent';
 
 import '~/assets/styles/base.css';
 
@@ -34,6 +35,7 @@ export default function RootLayout({ children }: LayoutProps) {
           <main>{children}</main>
           <Footer2 />
           <FloatingAdvisor />
+          <CookieConsent />
         </Providers>
       </body>
     </html>
