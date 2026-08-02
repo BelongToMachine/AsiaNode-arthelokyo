@@ -1,8 +1,22 @@
+'use client';
+
 import { footerData2 } from '~/shared/data/global.data';
 import CookiePreferencesButton from '~/components/widgets/CookiePreferencesButton';
+import { useLanguage } from '~/components/atoms/LanguageProvider';
+import { localizeContent } from '~/shared/data/locale-content';
 
 const Footer2 = () => {
-  const { links, columns, socials, footNote } = footerData2;
+  const { links, columns, socials } = footerData2;
+  const { messages, locale, withLocale } = useLanguage();
+  const footerLabels: Record<string, string> = {
+    Headquarters: messages.footer.headquarters,
+    'For brands': messages.footer.forBrands,
+    'Start a conversation': messages.footer.startConversation,
+    'Terms & Conditions': messages.footer.terms,
+    'Privacy Policy': messages.footer.privacy,
+  };
+  const localize = (label?: string) => (label ? footerLabels[label] ?? label : '');
+  const localizeText = (text: string) => localizeContent(text, locale);
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6">
@@ -12,24 +26,24 @@ const Footer2 = () => {
             key={`item-column-${index}`}
             className="col-span-4 sm:col-span-2 md:col-span-2 lg:col-span-1 xl:col-span-1"
           >
-            <div className="mb-2 font-medium text-gray-800 dark:text-gray-300">{title}</div>
+            <div className="mb-2 font-medium text-gray-800 dark:text-gray-300">{localize(title)}</div>
             {texts &&
               texts.map((text, index2) => (
                 <p key={`item-text-${index2}`} className="text-gray-600 dark:text-slate-400">
-                  {text}
+                  {localizeText(text)}
                 </p>
               ))}
           </div>
         ))}
         <div className="col-span-4 sm:col-span-2 md:col-span-2 lg:col-span-1 xl:col-span-1">
-          <div className="mb-2 font-medium text-gray-800 dark:text-gray-300">Social</div>
+          <div className="mb-2 font-medium text-gray-800 dark:text-gray-300">{messages.footer.social}</div>
           <ul className="mb-4 -ml-2 rtl:ml-0 rtl:-mr-2 flex md:order-1 md:mb-0">
             {socials.map(({ label, icon: Icon, href }, index) => (
               <li key={`item-social-${index}`}>
                 <a
                   className="text-muted inline-flex items-center rounded-lg p-2.5 text-sm hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
                   aria-label={label}
-                  href={href}
+                  href={withLocale(href ?? '')}
                 >
                   {Icon && <Icon className="h-5 w-5" />}
                 </a>
@@ -46,9 +60,9 @@ const Footer2 = () => {
                 <a
                   className="duration-150 ease-in-out placeholder:transition hover:text-gray-700 hover:underline dark:text-gray-400"
                   aria-label={label}
-                  href={href}
+                  href={withLocale(href ?? '')}
                 >
-                  {label}
+                  {localize(label)}
                 </a>
                 {links.length - 1 !== index && <span className="mr-1 rtl:mr-0 rtl:ml-1"> · </span>}
               </li>
@@ -58,7 +72,7 @@ const Footer2 = () => {
             <CookiePreferencesButton />
           </li>
         </ul>
-        {footNote}
+        <div className="mr-4 text-sm">© {new Date().getFullYear()} Asianode Limited Şirketi. {messages.footer.copyright}</div>
       </div>
     </div>
   );

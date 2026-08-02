@@ -1,6 +1,7 @@
 'use client';
 
 import { ThemeProvider } from 'next-themes';
+import { LanguageProvider } from '~/components/atoms/LanguageProvider';
 
 export interface ProvidersProps {
   children: React.ReactNode
@@ -8,7 +9,7 @@ export interface ProvidersProps {
 
 const Providers = ({ children }: ProvidersProps) => (
   <ThemeProvider attribute="class" disableTransitionOnChange>
-    {children}
+    <LanguageProvider>{children}</LanguageProvider>
   </ThemeProvider>
 );
 

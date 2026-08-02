@@ -2,6 +2,8 @@
 
 import { IconArrowUp, IconLoader2, IconMessageCircle2, IconSparkles, IconX } from '@tabler/icons-react';
 import { FormEvent, KeyboardEvent, useEffect, useRef, useState } from 'react';
+import { useLanguage } from '~/components/atoms/LanguageProvider';
+import { localizeContent } from '~/shared/data/locale-content';
 
 type ChatMessage = {
   role: 'user' | 'assistant';
@@ -110,6 +112,9 @@ export default function AsianodeChat({ embedded = false, onClose }: { embedded?:
   const [isSending, setIsSending] = useState(false);
   const [error, setError] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const { locale } = useLanguage();
+  const t = (value: string) => localizeContent(value, locale);
+  const localizedPrompts = suggestedPrompts.map((prompt) => t(prompt));
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
@@ -193,18 +198,16 @@ export default function AsianodeChat({ embedded = false, onClose }: { embedded?:
         {!embedded && (
           <div className="pt-3 lg:pt-12">
             <p className="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-amber-700 dark:text-amber-300">
-              <IconSparkles className="h-4 w-4" aria-hidden="true" /> Asianode advisor
+              <IconSparkles className="h-4 w-4" aria-hidden="true" /> {t('Asianode advisor')}
             </p>
             <h1 className="font-heading max-w-lg text-4xl font-bold leading-tight tracking-tight text-slate-950 dark:text-white sm:text-5xl">
-              A clearer starting point for Türkiye.
+              {t('A clearer starting point for Türkiye.')}
             </h1>
             <p className="mt-6 max-w-md text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-              Ask about local growth, creator partnerships, social commerce, or how to begin a focused market
-              conversation.
+              {t('Ask about local growth, creator partnerships, social commerce, or how to begin a focused market conversation.')}
             </p>
             <p className="mt-8 max-w-md border-l-2 border-amber-400 pl-4 text-sm leading-6 text-slate-500 dark:text-slate-400">
-              This advisor offers general guidance based on Asianode&apos;s public positioning. For tailored
-              recommendations, please contact our team.
+              {t("This advisor offers general guidance based on Asianode's public positioning. For tailored recommendations, please contact our team.")}
             </p>
           </div>
         )}
@@ -218,8 +221,8 @@ export default function AsianodeChat({ embedded = false, onClose }: { embedded?:
                 <IconMessageCircle2 className="h-5 w-5" aria-hidden="true" />
               </span>
               <div>
-                <h2 className="font-semibold text-slate-900 dark:text-white">Start a conversation</h2>
-                <p className="text-sm text-slate-500 dark:text-slate-400">General market and partnership guidance</p>
+                <h2 className="font-semibold text-slate-900 dark:text-white">{t('Start a conversation')}</h2>
+                <p className="text-sm text-slate-500 dark:text-slate-400">{t('General market and partnership guidance')}</p>
               </div>
             </div>
             {onClose && (
@@ -227,7 +230,7 @@ export default function AsianodeChat({ embedded = false, onClose }: { embedded?:
                 type="button"
                 onClick={onClose}
                 className="rounded p-1 text-slate-500 transition hover:bg-slate-200 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-amber-500 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white"
-                aria-label="Close Asianode Advisor"
+                aria-label={t('Close Asianode Advisor')}
               >
                 <IconX className="h-5 w-5" />
               </button>
@@ -239,10 +242,10 @@ export default function AsianodeChat({ embedded = false, onClose }: { embedded?:
               {messages.length === 0 ? (
                 <div className="flex h-full flex-col justify-start py-2">
                   <p className="max-w-md text-xl font-medium leading-relaxed text-slate-800 dark:text-slate-100">
-                    Where would you like to begin?
+                    {t('Where would you like to begin?')}
                   </p>
                   <div className="mt-6 flex flex-col items-start gap-2">
-                    {suggestedPrompts.map((prompt) => (
+                    {localizedPrompts.map((prompt) => (
                       <button
                         key={prompt}
                         type="button"
@@ -275,7 +278,7 @@ export default function AsianodeChat({ embedded = false, onClose }: { embedded?:
                           message.content
                         )
                       ) : (
-                        <IconLoader2 className="h-5 w-5 animate-spin" aria-label="Thinking" />
+                        <IconLoader2 className="h-5 w-5 animate-spin" aria-label={t('Thinking')} />
                       )}
                     </div>
                   </div>
@@ -287,7 +290,7 @@ export default function AsianodeChat({ embedded = false, onClose }: { embedded?:
             {error && <p className="px-5 pb-2 text-sm text-red-700 dark:text-red-300">{error}</p>}
             <form onSubmit={submit} className="border-t border-slate-200 p-4 dark:border-slate-700">
               <label className="sr-only" htmlFor="asianode-chat-input">
-                Ask AI about Asianode
+                {t('Ask AI about Asianode')}
               </label>
               <div className="flex items-end gap-3 rounded-lg border border-slate-300 bg-white p-2 focus-within:border-amber-500 focus-within:ring-2 focus-within:ring-amber-200 dark:border-slate-600 dark:bg-slate-950 dark:focus-within:border-amber-300 dark:focus-within:ring-amber-300/20">
                 <textarea
@@ -295,7 +298,7 @@ export default function AsianodeChat({ embedded = false, onClose }: { embedded?:
                   value={input}
                   onChange={(event) => setInput(event.target.value)}
                   onKeyDown={onKeyDown}
-                  placeholder="Ask a question about growing in Türkiye..."
+                  placeholder={t('Ask a question about growing in Türkiye...')}
                   rows={1}
                   maxLength={2000}
                   disabled={isSending}
@@ -305,13 +308,13 @@ export default function AsianodeChat({ embedded = false, onClose }: { embedded?:
                   type="submit"
                   disabled={!input.trim() || isSending}
                   className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-amber-400 text-slate-950 transition hover:bg-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-40 dark:bg-amber-300 dark:hover:bg-amber-200"
-                  aria-label="Send message"
+                  aria-label={t('Send message')}
                 >
                   {isSending ? <IconLoader2 className="h-5 w-5 animate-spin" /> : <IconArrowUp className="h-5 w-5" />}
                 </button>
               </div>
               <p className="mt-2 px-1 text-xs text-slate-400 dark:text-slate-500">
-                Press Enter to send · Shift + Enter for a new line
+                {t('Press Enter to send · Shift + Enter for a new line')}
               </p>
             </form>
           </div>

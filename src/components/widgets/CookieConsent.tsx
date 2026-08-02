@@ -2,12 +2,16 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { useLanguage } from '~/components/atoms/LanguageProvider';
+import { localizeContent } from '~/shared/data/locale-content';
 
 const CONSENT_KEY = 'asianode-cookie-consent';
 const OPEN_PREFERENCES_EVENT = 'asianode:open-cookie-preferences';
 
 const CookieConsent = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { locale } = useLanguage();
+  const t = (value: string) => localizeContent(value, locale);
 
   useEffect(() => {
     setIsVisible(window.localStorage.getItem(CONSENT_KEY) === null);
@@ -35,12 +39,12 @@ const CookieConsent = () => {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div className="max-w-sm">
           <p id="cookie-notice-title" className="text-sm font-semibold tracking-wide text-stone-900 dark:text-slate-100">
-            Your privacy matters
+            {t('Your privacy matters')}
           </p>
           <p className="mt-1.5 text-sm leading-6 text-stone-600 dark:text-slate-300">
-            We use essential cookies to provide site features. Optional cookies are only used with your permission. Read our{' '}
+            {t('We use essential cookies to provide site features. Optional cookies are only used with your permission. Read our')}{' '}
             <Link className="underline decoration-stone-400 underline-offset-4 hover:text-stone-950 dark:hover:text-white" href="/privacy">
-              Privacy Policy
+              {t('Privacy Policy')}
             </Link>
             .
           </p>
@@ -51,14 +55,14 @@ const CookieConsent = () => {
             onClick={() => savePreference('rejected')}
             type="button"
           >
-            Reject all
+            {t('Reject all')}
           </button>
           <button
             className="inline-flex items-center justify-center border border-stone-900 bg-stone-900 px-4 py-3 text-sm font-semibold text-stone-50 transition-colors hover:bg-stone-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-900 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-stone-300 dark:focus-visible:ring-stone-100 dark:focus-visible:ring-offset-slate-900"
             onClick={() => savePreference('accepted')}
             type="button"
           >
-            Accept all
+            {t('Accept all')}
           </button>
         </div>
       </div>

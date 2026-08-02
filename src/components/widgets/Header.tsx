@@ -8,13 +8,17 @@ import ToggleDarkMode from '~/components/atoms/ToggleDarkMode';
 import Link from 'next/link';
 import Logo from '~/components/atoms/Logo';
 import ToggleMenu from '../atoms/ToggleMenu';
+import LanguageSwitcher from '../atoms/LanguageSwitcher';
+import { useLanguage } from '~/components/atoms/LanguageProvider';
 import { headerData } from '~/shared/data/global.data';
 import CTA from '../common/CTA';
 import { CallToActionType } from '~/shared/types';
 
 const Header = () => {
   const { links, actions, isSticky, showToggleTheme, showRssFeed, position } = headerData;
-  const isOnLandingPage = usePathname() === '/';
+  const pathname = usePathname();
+  const isOnLandingPage = pathname === '/' || pathname === '/zh' || pathname === '/tr';
+  const { messages, withLocale } = useLanguage();
 
   const ref = useRef(null);
   const [isLandingHeroVisible, setIsLandingHeroVisible] = useState(true);
@@ -118,7 +122,7 @@ const Header = () => {
         >
           <Link
             className="flex items-center"
-            href="/"
+            href={withLocale('/')}
             onClick={() =>
               isToggleMenuOpen ? handleToggleMenuOnClick() : setIsDropdownOpen(updatedIsDropdownOpen as boolean[])
             }
@@ -126,6 +130,7 @@ const Header = () => {
             <Logo isOnLandingPage={isOverLandingHero && !isToggleMenuOpen} />
           </Link>
           <div className="flex items-center md:hidden">
+            <LanguageSwitcher isOnLandingPage={isOverLandingHero && !isToggleMenuOpen} />
             <ToggleMenu
               handleToggleMenuOnClick={handleToggleMenuOnClick}
               isToggleMenuOpen={isToggleMenuOpen}
@@ -154,7 +159,13 @@ const Header = () => {
                         }`}
                         onClick={() => handleDropdownOnClick(index)}
                       >
-                        {label}{' '}
+                        {label === 'FAQs'
+                          ? messages.navigation.faqs
+                          : label === 'About'
+                            ? messages.navigation.about
+                            : label === 'Contact'
+                              ? messages.navigation.contact
+                              : label}{' '}
                         {Icon && (
                           <Icon
                             className={`${
@@ -172,7 +183,7 @@ const Header = () => {
                           <li key={`item-link-${index2}`}>
                             <Link
                               className="whitespace-no-wrap block py-2 px-5 first:rounded-t last:rounded-b dark:hover:bg-gray-700 md:hover:bg-gray-200"
-                              href={href2 as string}
+                              href={withLocale(href2 as string)}
                               onClick={() =>
                                 isToggleMenuOpen ? handleToggleMenuOnClick() : handleCloseDropdownOnClick(index)
                               }
@@ -188,10 +199,16 @@ const Header = () => {
                       className={`flex items-center px-4 py-3 font-medium transition duration-150 ease-in-out ${
                         isOverLandingHero ? 'text-white hover:text-amber-100' : 'hover:text-gray-900 dark:hover:text-white'
                       }`}
-                      href={href as string}
+                      href={withLocale(href as string)}
                       onClick={() => (isToggleMenuOpen ? handleToggleMenuOnClick() : handleDropdownOnClick(index))}
                     >
-                      {label}
+                      {label === 'FAQs'
+                        ? messages.navigation.faqs
+                        : label === 'About'
+                          ? messages.navigation.about
+                          : label === 'Contact'
+                            ? messages.navigation.contact
+                            : label}
                     </Link>
                   )}
                 </li>
@@ -204,6 +221,7 @@ const Header = () => {
           } fixed bottom-0 left-0 w-full justify-end p-3 md:static md:mb-0 md:flex md:w-auto md:self-center md:p-0 md:bg-transparent md:dark:bg-transparent md:border-none bg-white dark:bg-slate-900 border-t border-gray-200 dark:border-slate-600`}
         >
           <div className="flex w-full items-center justify-between md:w-auto">
+            <LanguageSwitcher isOnLandingPage={isOverLandingHero} />
             {showToggleTheme && <ToggleDarkMode isOnLandingPage={isOverLandingHero} />}
             {showRssFeed && (
               <Link
@@ -219,7 +237,14 @@ const Header = () => {
                 {actions.map((callToAction, index) => (
                   <CTA
                     key={`item-action-${index}`}
-                    callToAction={callToAction as CallToActionType}
+                    callToAction={{
+                      ...(callToAction as CallToActionType),
+                      href: withLocale((callToAction as CallToActionType).href),
+                      text:
+                        (callToAction as CallToActionType).text === 'Start a conversation'
+                          ? messages.navigation.startConversation
+                          : (callToAction as CallToActionType).text,
+                    }}
                     linkClass="btn m-1 border-amber-400 bg-amber-400 py-2 px-5 text-sm font-semibold text-slate-950 shadow-none hover:border-amber-300 hover:bg-amber-300 hover:text-slate-950 dark:border-amber-300 dark:bg-amber-300 dark:text-slate-950 dark:hover:border-amber-200 dark:hover:bg-amber-200 dark:hover:text-slate-950 md:px-6"
                   />
                 ))}
