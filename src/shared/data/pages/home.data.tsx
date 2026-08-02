@@ -1,9 +1,9 @@
 import {
   IconBrandTiktok,
+  IconBrandFacebook,
   IconBrandLinkedin,
   IconChartArrowsVertical,
   IconMapPin,
-  IconMail,
   IconMessages,
   IconNetwork,
   IconRocket,
@@ -23,14 +23,18 @@ import {
   TeamProps,
   TestimonialsProps,
 } from '../../types';
-import istanbulHeroImg from '~/assets/images/istanbul-hero.png';
-import cameraFrontImg from '~/assets/images/camera-front.jpg';
-import cameraBackImg from '~/assets/images/camera-back.jpg';
-import gasImg from '~/assets/images/gas.jpg';
+import istanbulHeroImg from '~/assets/images/istanbul-hero-bloom.png';
+import marketActivationImg from '~/assets/images/cross-border-market-activation.png';
+import creatorSocialCommerceImg from '~/assets/images/creator-social-commerce.png';
+import crossBorderFulfilmentImg from '~/assets/images/cross-border-fulfilment.png';
 import nextJsLogo from '~/assets/images/nextjs-logo.png';
 import reactLogo from '~/assets/images/react-logo.png';
 import tailwindCssLogo from '~/assets/images/tailwind-css-logo.png';
 import typescriptLogo from '~/assets/images/typescript-logo.png';
+import teamMemberOneImg from '~/assets/images/team-member-1.webp';
+import teamMemberTwoImg from '~/assets/images/team-member-2.webp';
+import teamMemberThreeImg from '~/assets/images/team-member-3.webp';
+import teamMemberFourImg from '~/assets/images/team-member-4.webp';
 
 export const heroHome: HeroProps = {
   tagline: 'Türkiye growth partner',
@@ -41,7 +45,7 @@ export const heroHome: HeroProps = {
   callToAction2: { text: 'Explore our services', href: '#services' },
   image: {
     src: istanbulHeroImg,
-    alt: 'Istanbul waterfront at sunset',
+    alt: 'Istanbul waterfront on the Bosphorus at golden hour',
   },
   isImageBackground: true,
 };
@@ -116,7 +120,7 @@ export const contentHomeOne: ContentProps = {
     { title: 'Connect influence to commercial results', description: 'Coordinate discovery, conversion, and channel activity rather than treating them as separate initiatives.' },
     { title: 'Operate with a local team', description: 'Gain a dependable partner for day-to-day market execution and collaboration.' },
   ],
-  image: { src: cameraFrontImg, alt: 'Asianode market activation' },
+  image: { src: marketActivationImg, alt: 'Cross-border e-commerce market activation in Istanbul' },
 };
 
 export const contentHomeTwo: ContentProps = {
@@ -135,14 +139,14 @@ export const contentHomeTwo: ContentProps = {
     { title: 'Commercial opportunity development' },
   ],
   isReversed: true,
-  image: { src: cameraBackImg, alt: 'Asianode creator collaboration' },
+  image: { src: creatorSocialCommerceImg, alt: 'Creator preparing a social-commerce product demonstration' },
 };
 
 export const stepsHome: StepsProps = {
   id: 'approach',
   hasBackground: false,
   isImageDisplayed: true,
-  image: { src: gasImg, alt: 'Asianode partnership process' },
+  image: { src: crossBorderFulfilmentImg, alt: 'Cross-border e-commerce fulfilment in Istanbul' },
   header: {
     tagline: 'How we work',
     title: 'Built around your business objective—not a preset package.',
@@ -203,39 +207,43 @@ export const teamHome: TeamProps = {
   },
   teams: [
     {
-      name: 'Cindy Belcher',
-      occupation: 'SEO Consultant',
-      image: { src: 'https://images.unsplash.com/photo-1637858868799-7f26a0640eb6?auto=format&fit=crop&w=1180&q=80', alt: 'Placeholder team member' },
+      name: 'Chunjian Yang',
+      occupation: 'Founder & CEO',
+      image: { src: teamMemberOneImg, alt: 'Asianode team member' },
       items: [
-        { title: 'LinkedIn profile', icon: IconBrandLinkedin, href: '#' },
-        { title: 'Contact by email', icon: IconMail, href: '#' },
+        { title: 'LinkedIn profile', icon: IconBrandLinkedin, href: 'https://www.linkedin.com/in/chunjian-yang-b182b5289/' },
+        { title: 'Facebook profile', icon: IconBrandFacebook, href: 'https://www.facebook.com/profile.php?id=61589079044014' },
+        { title: 'TikTok profile', icon: IconBrandTiktok, href: '#' },
       ],
     },
     {
-      name: 'Toby Foster',
-      occupation: 'Marketing Tech',
-      image: { src: 'https://images.unsplash.com/photo-1614583224978-f05ce51ef5fa?auto=format&fit=crop&w=2172&q=80', alt: 'Placeholder team member' },
+      name: 'Zongsheng Zhou',
+      occupation: 'MCN General Manager Marketing',
+      image: { src: teamMemberTwoImg, alt: 'Asianode team member' },
       items: [
-        { title: 'LinkedIn profile', icon: IconBrandLinkedin, href: '#' },
-        { title: 'Contact by email', icon: IconMail, href: '#' },
+        { title: 'LinkedIn profile', icon: IconBrandLinkedin, href: 'https://www.linkedin.com/in/zongsheng-zhou-b98279310/?locale=zh' },
+        { title: 'Facebook profile', icon: IconBrandFacebook, href: '#' },
+        { title: 'TikTok profile', icon: IconBrandTiktok, href: '#' },
       ],
     },
     {
-      name: 'Clark Bourne',
-      occupation: 'Content Manager',
-      image: { src: 'https://images.unsplash.com/photo-1639628735078-ed2f038a193e?auto=format&fit=crop&w=1674&q=80', alt: 'Placeholder team member' },
+      name: 'JiaJun Chen',
+      occupation: 'Head of Supply Chain',
+      image: { src: teamMemberThreeImg, alt: 'Asianode team member' },
       items: [
-        { title: 'LinkedIn profile', icon: IconBrandLinkedin, href: '#' },
-        { title: 'Contact by email', icon: IconMail, href: '#' },
+        { title: 'LinkedIn profile', icon: IconBrandLinkedin, href: 'https://www.linkedin.com/in/jiajun-chen-5bb154409/' },
+        { title: 'Facebook profile', icon: IconBrandFacebook, href: '#' },
+        { title: 'TikTok profile', icon: IconBrandTiktok, href: '#' },
       ],
     },
     {
-      name: 'Bella Chase',
-      occupation: 'UX Designer',
-      image: { src: 'https://images.unsplash.com/photo-1628260412297-a3377e45006f?auto=format&fit=crop&w=1674&q=80', alt: 'Placeholder team member' },
+      name: 'Jie Liao',
+      occupation: 'Technical & Operations Director',
+      image: { src: teamMemberFourImg, alt: 'Asianode team member' },
       items: [
-        { title: 'LinkedIn profile', icon: IconBrandLinkedin, href: '#' },
-        { title: 'Contact by email', icon: IconMail, href: '#' },
+        { title: 'LinkedIn profile', icon: IconBrandLinkedin, href: 'https://www.linkedin.com/in/jie-liao-477855416/' },
+        { title: 'Facebook profile', icon: IconBrandFacebook, href: 'https://www.facebook.com/profile.php?id=61590981695479' },
+        { title: 'TikTok profile', icon: IconBrandTiktok, href: '#' },
       ],
     },
   ],

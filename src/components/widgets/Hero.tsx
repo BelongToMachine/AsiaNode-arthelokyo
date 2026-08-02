@@ -8,7 +8,7 @@ const Hero = ({ title, subtitle, tagline, callToAction, callToAction2, image, is
     return (
       <section id="heroOne" className="relative isolate overflow-hidden bg-slate-950 text-white">
         <Image
-          className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+          className="hero-image-reveal absolute inset-0 -z-20 h-full w-full object-cover object-center"
           src={image.src}
           alt={image.alt}
           fill
@@ -17,10 +17,16 @@ const Hero = ({ title, subtitle, tagline, callToAction, callToAction2, image, is
           priority
         />
         <div
-          className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(12,28,40,0.42)_0%,rgba(12,28,40,0.18)_42%,rgba(12,28,40,0.58)_100%)] dark:bg-[linear-gradient(180deg,rgba(6,16,24,0.62)_0%,rgba(6,16,24,0.32)_42%,rgba(6,16,24,0.72)_100%)]"
+          className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(12,28,40,0.18)_0%,rgba(12,28,40,0.06)_42%,rgba(12,28,40,0.26)_100%)] dark:bg-[linear-gradient(180deg,rgba(6,16,24,0.28)_0%,rgba(6,16,24,0.10)_42%,rgba(6,16,24,0.32)_100%)]"
           aria-hidden="true"
         />
-        <div className="mx-auto flex min-h-[100svh] max-w-7xl items-center px-4 py-20 sm:px-6 md:py-28">
+        <div
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-[clamp(8rem,18vw,14rem)] overflow-hidden"
+          aria-hidden="true"
+        >
+          <div className="hero-horizon-transition absolute inset-y-0 -left-[6%] w-[112%]" />
+        </div>
+        <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl items-center px-4 py-20 sm:px-6 md:py-28">
           <div id="heroContent" className="mx-auto w-full max-w-4xl text-center">
             <HeroParallaxContent distance={220}>
               {tagline && (
