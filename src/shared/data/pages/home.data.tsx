@@ -8,6 +8,8 @@ import {
   IconNetwork,
   IconRocket,
   IconShieldCheck,
+  IconScale,
+  IconTruckDelivery,
   IconUsersGroup,
 } from '@tabler/icons-react';
 import {
@@ -58,38 +60,44 @@ export const featuresHome: FeaturesProps = {
     tagline: 'What we do',
     title: 'One local partner. A connected growth system.',
     subtitle:
-      'We connect brands, creators, channels, and market knowledge to make expansion in Türkiye more considered and more effective.',
+      'We connect overseas brands, local creators, multi-scene sales channels, Türkiye-focused market intelligence, cross-border trade service and overseas corporate-legal support, to make your Turkish-market expansion well-planned, low-risk and high-efficiency.',
   },
+  itemsTitle: 'Core Service Modules',
   items: [
     {
-      title: 'Creator partnerships',
-      description: 'Build relevant influencer ecosystems, from creator selection and briefing to campaign delivery.',
+      title: 'Creator Partnerships & Influencer Marketing',
+      description: 'Build targeted local-influencer ecosystems. We complete creator screening, requirement briefing, content coordination and the full-cycle delivery of influencer-driven marketing campaigns.',
       icon: IconUsersGroup,
     },
     {
-      title: 'TikTok and social commerce',
-      description: 'Turn short-form content and community attention into measurable product discovery and demand.',
+      title: 'TikTok & Social Exposure (Short-Video & Livestream Operations)',
+      description: 'Run systematic short-video content creation and livestream operation. Convert community traffic, brand exposure and audience engagement into measurable product awareness and consumer demand.',
       icon: IconBrandTiktok,
     },
     {
-      title: 'Local market activation',
-      description: 'Adapt your brand strategy for Türkiye with locally informed content, media, and operations.',
+      title: 'Local-Market Brand Activation',
+      description: 'Custom-adapt your brand strategy for Türkiye, including localised content planning, media placement and on-site daily market-running operations.',
       icon: IconMapPin,
     },
     {
-      title: 'Channel development',
-      description: 'Connect online demand with e-commerce direction, retail execution, and channel distribution.',
+      title: 'Multi-Channel Business Development',
+      description: 'Match online consumer demand with e-commerce operation guidance, offline-retail landing execution and full-scale distribution-channel layout.',
       icon: IconNetwork,
     },
     {
-      title: 'Campaign optimisation',
-      description: 'Use performance signals to improve creative, investment, and conversion throughout a campaign.',
+      title: 'End-to-End Campaign Optimisation',
+      description: 'Adjust creative assets, advertisement investment and conversion tactics in real time based on campaign performance data throughout promotion cycles.',
       icon: IconChartArrowsVertical,
     },
     {
-      title: 'Local compliance support',
-      description: 'Move with greater confidence through the practical requirements of operating in a new market.',
-      icon: IconShieldCheck,
+      title: 'Cross-Border Foreign-Trade Service',
+      description: 'Provide one-stop overseas trading support, covering goods sourcing, shipment arrangement, customs-related coordination and local-market goods circulation solutions.',
+      icon: IconTruckDelivery,
+    },
+    {
+      title: 'Overseas-Corporate Legal & Audit Compliance Support',
+      description: 'Beyond basic local-market regulation consultation; deliver corporate-level legal consultancy, company-structure arrangement, regular financial audit and risk-check services for your offshore Turkish entities.',
+      icon: IconScale,
     },
   ],
 };

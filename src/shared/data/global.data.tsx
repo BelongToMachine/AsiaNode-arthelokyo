@@ -1,6 +1,4 @@
-import {
-  IconBrandLinkedin,
-} from '@tabler/icons-react';
+import { IconBrandLinkedin } from '@tabler/icons-react';
 import { AnnouncementProps, FooterProps, HeaderProps } from '../types';
 
 // Announcement data
@@ -116,9 +114,7 @@ export const footerData: FooterProps = {
   ],
   footNote: (
     <div className="mr-4 rtl:mr-0 rtl:ml-4 text-sm">
-      <span>
-        © {new Date().getFullYear()} Asianode Limited Şirketi. All rights reserved.
-      </span>
+      <span>© {new Date().getFullYear()} Asianode Limited Şirketi. All rights reserved.</span>
     </div>
   ),
 };
@@ -154,9 +150,7 @@ export const footerData2: FooterProps = {
   ],
   footNote: (
     <div className="mr-4 rtl:mr-0 rtl:ml-4 text-sm">
-      <span>
-        © {new Date().getFullYear()} Asianode Limited Şirketi. All rights reserved.
-      </span>
+      <span>© {new Date().getFullYear()} Asianode Limited Şirketi. All rights reserved.</span>
     </div>
   ),
 };

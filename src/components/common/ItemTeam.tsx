@@ -25,7 +25,8 @@ const ItemTeam = ({
             items.map(
               ({ title, href, icon: Icon }, index2) =>
                 Icon &&
-                href && (
+                href &&
+                href !== '#' && (
                   <li
                     key={`team-${index2}`}
                     className="m-1 flex items-center justify-center rounded text-primary-700 hover:text-gray-500"
