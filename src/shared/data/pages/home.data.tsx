@@ -25,7 +25,7 @@ import {
   TeamProps,
   TestimonialsProps,
 } from '../../types';
-import istanbulHeroImg from '~/assets/images/istanbul-hero-bloom.png';
+import globalCommerceHeroImg from '~/assets/images/global-commerce-hero.webp';
 import marketActivationImg from '~/assets/images/cross-border-market-activation.png';
 import creatorSocialCommerceImg from '~/assets/images/creator-social-commerce.png';
 import crossBorderFulfilmentImg from '~/assets/images/cross-border-fulfilment.png';
@@ -46,8 +46,8 @@ export const heroHome: HeroProps = {
   callToAction: { text: 'Discuss a partnership', href: '/contact' },
   callToAction2: { text: 'Explore our services', href: '#services' },
   image: {
-    src: istanbulHeroImg,
-    alt: 'Istanbul waterfront on the Bosphorus at golden hour',
+    src: globalCommerceHeroImg,
+    alt: 'Global commerce network, digital sales channels, and market analytics',
   },
   isImageBackground: true,
 };

@@ -8,7 +8,7 @@ const Hero = ({ title, subtitle, tagline, callToAction, callToAction2, image, is
     return (
       <section id="heroOne" className="relative isolate overflow-hidden bg-slate-950 text-white">
         <Image
-          className="hero-image-reveal absolute inset-0 -z-20 h-full w-full object-cover object-center"
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
           src={image.src}
           alt={image.alt}
           fill
@@ -17,15 +17,9 @@ const Hero = ({ title, subtitle, tagline, callToAction, callToAction2, image, is
           priority
         />
         <div
-          className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(12,28,40,0.18)_0%,rgba(12,28,40,0.06)_42%,rgba(12,28,40,0.26)_100%)] dark:bg-[linear-gradient(180deg,rgba(6,16,24,0.28)_0%,rgba(6,16,24,0.10)_42%,rgba(6,16,24,0.32)_100%)]"
+          className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(3,10,22,0.72)_0%,rgba(3,10,22,0.52)_45%,rgba(3,10,22,0.34)_100%)] dark:bg-[radial-gradient(circle_at_center,rgba(2,7,16,0.78)_0%,rgba(2,7,16,0.58)_45%,rgba(2,7,16,0.42)_100%)]"
           aria-hidden="true"
         />
-        <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-[clamp(8rem,18vw,14rem)] overflow-hidden"
-          aria-hidden="true"
-        >
-          <div className="hero-horizon-transition absolute inset-y-0 -left-[6%] w-[112%]" />
-        </div>
         <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl items-center px-4 py-20 sm:px-6 md:py-28">
           <div id="heroContent" className="mx-auto w-full max-w-4xl text-center">
             <HeroParallaxContent distance={220}>
@@ -59,7 +53,7 @@ const Hero = ({ title, subtitle, tagline, callToAction, callToAction2, image, is
                   {callToAction2 && (
                     <CTA
                       callToAction={callToAction2}
-                      linkClass="btn border-slate-100 bg-slate-950/85 font-semibold text-white shadow-lg shadow-black/20 hover:border-white hover:bg-slate-900 hover:text-white focus:ring-white focus:ring-offset-slate-900 dark:border-teal-200 dark:bg-teal-900 dark:text-teal-50 dark:hover:border-teal-100 dark:hover:bg-teal-800 dark:hover:text-white"
+                      linkClass="btn border-white bg-white/95 font-semibold text-slate-950 shadow-lg shadow-black/25 hover:border-amber-100 hover:bg-amber-50 hover:text-slate-950 focus:ring-white focus:ring-offset-slate-900 dark:border-white dark:bg-white dark:text-slate-950 dark:hover:border-amber-100 dark:hover:bg-amber-50 dark:hover:text-slate-950"
                     />
                   )}
                 </div>
