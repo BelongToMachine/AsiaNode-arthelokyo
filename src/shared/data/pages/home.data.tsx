@@ -26,8 +26,8 @@ import {
   TestimonialsProps,
 } from '../../types';
 import globalCommerceHeroImg from '~/assets/images/global-commerce-hero.webp';
-import marketActivationImg from '~/assets/images/cross-border-market-activation.png';
-import creatorSocialCommerceImg from '~/assets/images/creator-social-commerce.png';
+import marketEntryConsultationImg from '~/assets/images/market-entry-consultation.webp';
+import creatorContentProductionImg from '~/assets/images/creator-content-production.webp';
 import crossBorderFulfilmentImg from '~/assets/images/cross-border-fulfilment.png';
 import nextJsLogo from '~/assets/images/nextjs-logo.png';
 import reactLogo from '~/assets/images/react-logo.png';
@@ -128,7 +128,7 @@ export const contentHomeOne: ContentProps = {
     { title: 'Connect influence to commercial results', description: 'Coordinate discovery, conversion, and channel activity rather than treating them as separate initiatives.' },
     { title: 'Operate with a local team', description: 'Gain a dependable partner for day-to-day market execution and collaboration.' },
   ],
-  image: { src: marketActivationImg, alt: 'Cross-border e-commerce market activation in Istanbul' },
+  image: { src: marketEntryConsultationImg, alt: 'Asianode team discussing a brand market-entry strategy for Türkiye' },
 };
 
 export const contentHomeTwo: ContentProps = {
@@ -147,7 +147,7 @@ export const contentHomeTwo: ContentProps = {
     { title: 'Commercial opportunity development' },
   ],
   isReversed: true,
-  image: { src: creatorSocialCommerceImg, alt: 'Creator preparing a social-commerce product demonstration' },
+  image: { src: creatorContentProductionImg, alt: 'Creator planning and producing social-commerce beauty content' },
 };
 
 export const stepsHome: StepsProps = {
@@ -215,7 +215,7 @@ export const teamHome: TeamProps = {
   },
   teams: [
     {
-      name: 'Chunjian Yang',
+      name: 'ChunJian Yang',
       occupation: 'Founder & CEO',
       image: { src: teamMemberOneImg, alt: 'Asianode team member' },
       items: [
@@ -225,7 +225,7 @@ export const teamHome: TeamProps = {
       ],
     },
     {
-      name: 'Zongsheng Zhou',
+      name: 'ZongSheng Zhou',
       occupation: 'MCN General Manager Marketing',
       image: { src: teamMemberTwoImg, alt: 'Asianode team member' },
       items: [
