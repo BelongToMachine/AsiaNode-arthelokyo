@@ -37,6 +37,7 @@ import teamMemberOneImg from '~/assets/images/team-member-1.webp';
 import teamMemberTwoImg from '~/assets/images/team-member-2.webp';
 import teamMemberThreeImg from '~/assets/images/team-member-3.webp';
 import teamMemberFourImg from '~/assets/images/team-member-4.webp';
+import teamMemberFiveImg from '~/assets/images/team-member-5.jpg';
 
 export const heroHome: HeroProps = {
   tagline: 'Türkiye growth partner',
@@ -253,6 +254,12 @@ export const teamHome: TeamProps = {
         { title: 'Facebook profile', icon: IconBrandFacebook, href: 'https://www.facebook.com/profile.php?id=61590981695479' },
         { title: 'TikTok profile', icon: IconBrandTiktok, href: '#' },
       ],
+    },
+    {
+      name: 'Zhou Longchi',
+      occupation: 'Operations Management',
+      image: { src: teamMemberFiveImg, alt: 'Zhou Longchi, Asianode operations management' },
+      items: [{ title: 'LinkedIn profile', icon: IconBrandLinkedin, href: 'https://www.linkedin.com/in/longchi-zhou-093b71419/' }],
     },
   ],
 };

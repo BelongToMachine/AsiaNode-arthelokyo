@@ -118,6 +118,7 @@ const dictionaries: Record<Exclude<Locale, 'en'>, Dictionary> = {
     'Tell us about your market and growth goals.': 'Pazarınızdan ve büyüme hedeflerinizden bahsedin.', 'Use our contact form to reach the Asianode team.': 'Asianode ekibine ulaşmak için iletişim formumuzu kullanın.',
     'Find the right local voices for your brand.': 'Markanız için doğru yerel sesleri bulun.', 'Our people': 'Ekibimiz', 'Meet the team': 'Ekiple tanışın',
     'Placeholder profiles for the team section. Verified Asianode team information will be added here.': 'Ekip bölümü için yer tutucu profiller. Doğrulanmış Asianode ekip bilgileri buraya eklenecektir.',
+    'Operations Management': 'Operasyon Yönetimi',
     'SEO Consultant': 'SEO danışmanı', 'Marketing Tech': 'Pazarlama teknolojisi', 'Content Manager': 'İçerik yöneticisi', 'UX Designer': 'UX tasarımcısı',
     'Asianode works with brands looking to enter, strengthen, or activate their presence in Türkiye through locally grounded growth initiatives.': 'Asianode, yerelde temellenmiş büyüme girişimleriyle Türkiye’ye girmek, varlığını güçlendirmek veya etkinleştirmek isteyen markalarla çalışır.',
     'Can Asianode support both creator marketing and commercial channels?': 'Asianode hem üretici pazarlamasını hem ticari kanalları destekleyebilir mi?',

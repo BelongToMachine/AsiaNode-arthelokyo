@@ -2,13 +2,14 @@ import Headline from '../common/Headline';
 import { TeamProps } from '~/shared/types';
 import WidgetWrapper from '../common/WidgetWrapper';
 import ItemTeam from '../common/ItemTeam';
+import { twMerge } from 'tailwind-merge';
 
 const Team = ({ header, teams, id, hasBackground = false }: TeamProps) => (
   <WidgetWrapper id={id ? id : ''} hasBackground={hasBackground} containerClass="">
     {header && <Headline header={header} titleClass="text-2xl sm:text-3xl" />}
     <div className="flex items-stretch justify-center">
-      <div className="grid grid-cols-1 gap-4 dark:text-white sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4">
-        {teams.map(({ name, occupation, image, items }, index) => (
+      <div className="grid grid-cols-1 justify-items-center gap-4 dark:text-white sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 xl:gap-5">
+        {teams.map(({ name, occupation, image, imageClass, items }, index) => (
           <div key={`item-team-${index}`} className="p-2">
             <ItemTeam
               name={name}
@@ -16,7 +17,10 @@ const Team = ({ header, teams, id, hasBackground = false }: TeamProps) => (
               image={image}
               items={items}
               containerClass=""
-              imageClass="h-72 w-60 rounded-md object-cover shadow-lg bg-gray-500 dark:bg-slate-700"
+              imageClass={twMerge(
+                'h-72 w-full max-w-60 rounded-md bg-gray-500 object-cover shadow-lg dark:bg-slate-700',
+                imageClass,
+              )}
               panelClass="relative mt-3 text-center"
               nameClass="mb-1.5 text-xl font-bold"
               occupationClass="mb-7 text-base font-medium capitalize text-gray-600 dark:text-slate-400"
