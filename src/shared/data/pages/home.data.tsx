@@ -33,7 +33,7 @@ import nextJsLogo from '~/assets/images/nextjs-logo.png';
 import reactLogo from '~/assets/images/react-logo.png';
 import tailwindCssLogo from '~/assets/images/tailwind-css-logo.png';
 import typescriptLogo from '~/assets/images/typescript-logo.png';
-import teamMemberOneImg from '~/assets/images/team-member-1.webp';
+import teamMemberOneImg from '~/assets/images/team-member-1.png';
 import teamMemberTwoImg from '~/assets/images/team-member-2.webp';
 import teamMemberThreeImg from '~/assets/images/team-member-3.webp';
 import teamMemberFourImg from '~/assets/images/team-member-4.webp';
