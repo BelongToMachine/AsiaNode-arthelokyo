@@ -20,6 +20,13 @@ export const metadata: Metadata = {
     default: SITE.title,
   },
   description: SITE.description,
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '48x48', type: 'image/x-icon' },
+      { url: '/favicon.png', sizes: '256x256', type: 'image/png' },
+    ],
+    apple: '/favicon.png',
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps) {
