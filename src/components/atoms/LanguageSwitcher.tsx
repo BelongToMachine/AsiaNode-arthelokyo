@@ -2,9 +2,16 @@
 
 import { IconCheck, IconLanguage } from '@tabler/icons-react';
 import { useEffect, useId, useRef, useState } from 'react';
-import { Locale, useLanguage } from '~/components/atoms/LanguageProvider';
+import { useLanguage } from '~/components/atoms/LanguageProvider';
+import type { Locale } from '~/components/atoms/LanguageProvider';
+import { localePreferenceCookie } from '~/shared/utils/locale';
 
 const locales: Locale[] = ['en', 'zh', 'tr'];
+
+const saveLocalePreference = (locale: Locale) => {
+  const secure = window.location.protocol === 'https:' ? '; Secure' : '';
+  document.cookie = `${localePreferenceCookie}=${locale}; Path=/; Max-Age=31536000; SameSite=Lax${secure}`;
+};
 
 const LanguageSwitcher = ({ isOnLandingPage = false }: { isOnLandingPage?: boolean }) => {
   const { locale, pathForLocale, messages } = useLanguage();
@@ -48,6 +55,7 @@ const LanguageSwitcher = ({ isOnLandingPage = false }: { isOnLandingPage?: boole
               role="menuitemradio"
               aria-checked={locale === option}
               href={pathForLocale(option)}
+              onClick={() => saveLocalePreference(option)}
               className="flex w-full items-center justify-between px-3 py-2 text-left text-sm text-gray-800 transition-colors hover:bg-amber-50 dark:text-slate-200 dark:hover:bg-slate-800"
             >
               {messages.language[option]}

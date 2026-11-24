@@ -2,8 +2,9 @@
 
 import { createContext, useContext, useEffect, useMemo } from 'react';
 import { usePathname } from 'next/navigation';
+import { localeFromPath, type Locale } from '~/shared/utils/locale';
 
-export type Locale = 'en' | 'zh' | 'tr';
+export type { Locale } from '~/shared/utils/locale';
 
 type Messages = {
   language: { label: string; en: string; zh: string; tr: string };
@@ -70,8 +71,6 @@ type LanguageContextValue = {
 
 const LanguageContext = createContext<LanguageContextValue | undefined>(undefined);
 const stripLocalePrefix = (path: string) => path.replace(/^\/(zh|tr)(?=\/|$)/, '') || '/';
-const localeFromPath = (path: string): Locale =>
-  path === '/zh' || path.startsWith('/zh/') ? 'zh' : path === '/tr' || path.startsWith('/tr/') ? 'tr' : 'en';
 
 export const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname() || '/';
