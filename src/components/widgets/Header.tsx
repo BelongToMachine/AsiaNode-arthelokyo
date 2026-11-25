@@ -18,7 +18,8 @@ const Header = () => {
   const { links, actions, isSticky, showToggleTheme, showRssFeed, position } = headerData;
   const pathname = usePathname();
   const isOnLandingPage = pathname === '/' || pathname === '/zh' || pathname === '/tr';
-  const { messages, withLocale } = useLanguage();
+  const { messages, withLocale, locale } = useLanguage();
+  const visibleLinks = locale === 'zh' ? links : links?.filter(({ label }) => label !== 'Quote');
 
   const ref = useRef(null);
   const [isLandingHeroVisible, setIsLandingHeroVisible] = useState(true);
@@ -148,8 +149,8 @@ const Header = () => {
             ref={ref}
             className="flex w-full flex-col mt-2 mb-36 md:m-0 text-xl md:w-auto md:flex-row md:self-center md:pt-0 md:text-base"
           >
-            {links &&
-              links.map(({ label, href, icon: Icon, links }, index) => (
+            {visibleLinks &&
+              visibleLinks.map(({ label, href, icon: Icon, links }, index) => (
                 <li key={`item-link-${index}`} className={links?.length ? 'dropdown' : ''}>
                   {links && links.length ? (
                     <>
@@ -165,6 +166,8 @@ const Header = () => {
                             ? messages.navigation.about
                             : label === 'Contact'
                               ? messages.navigation.contact
+                              : label === 'Quote'
+                                ? messages.navigation.quote
                               : label}{' '}
                         {Icon && (
                           <Icon
@@ -208,6 +211,8 @@ const Header = () => {
                           ? messages.navigation.about
                           : label === 'Contact'
                             ? messages.navigation.contact
+                            : label === 'Quote'
+                              ? messages.navigation.quote
                             : label}
                     </Link>
                   )}

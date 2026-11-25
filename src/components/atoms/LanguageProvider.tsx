@@ -8,7 +8,7 @@ export type { Locale } from '~/shared/utils/locale';
 
 type Messages = {
   language: { label: string; en: string; zh: string; tr: string };
-  navigation: { faqs: string; about: string; contact: string; startConversation: string };
+  navigation: { faqs: string; about: string; contact: string; quote: string; startConversation: string };
   footer: {
     headquarters: string;
     forBrands: string;
@@ -23,7 +23,7 @@ type Messages = {
 const messages: Record<Locale, Messages> = {
   en: {
     language: { label: 'Language', en: 'English', zh: '中文', tr: 'Türkçe' },
-    navigation: { faqs: 'FAQs', about: 'About', contact: 'Contact', startConversation: 'Start a conversation' },
+    navigation: { faqs: 'FAQs', about: 'About', contact: 'Contact', quote: 'Quote', startConversation: 'Start a conversation' },
     footer: {
       headquarters: 'Headquarters',
       forBrands: 'For brands',
@@ -36,7 +36,7 @@ const messages: Record<Locale, Messages> = {
   },
   zh: {
     language: { label: '语言', en: 'English', zh: '中文', tr: 'Türkçe' },
-    navigation: { faqs: '常见问题', about: '关于我们', contact: '联系我们', startConversation: '开启对话' },
+    navigation: { faqs: '常见问题', about: '关于我们', contact: '联系我们', quote: '报价', startConversation: '开启对话' },
     footer: {
       headquarters: '总部',
       forBrands: '品牌合作',
@@ -49,7 +49,7 @@ const messages: Record<Locale, Messages> = {
   },
   tr: {
     language: { label: 'Dil', en: 'English', zh: '中文', tr: 'Türkçe' },
-    navigation: { faqs: 'SSS', about: 'Hakkımızda', contact: 'İletişim', startConversation: 'Görüşme başlatın' },
+    navigation: { faqs: 'SSS', about: 'Hakkımızda', contact: 'İletişim', quote: 'Teklif', startConversation: 'Görüşme başlatın' },
     footer: {
       headquarters: 'Merkez',
       forBrands: 'Markalar için',

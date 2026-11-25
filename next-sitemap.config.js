@@ -4,4 +4,5 @@ const SITE = require('./src/config.js').SITE;
 module.exports = {
   siteUrl: `${SITE.origin}${SITE.basePathname}`,
   generateRobotsTxt: true,
+  exclude: ['/quote', '/zh/quote', '/tr/quote', '/quote-access'],
 };

@@ -23,7 +23,7 @@ export default function FloatingAdvisor() {
       <button
         type="button"
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full bg-amber-400 px-4 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-slate-950/20 transition hover:-translate-y-0.5 hover:bg-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 dark:bg-amber-300 dark:hover:bg-amber-200"
+        className="floating-advisor-launcher fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full bg-amber-400 px-4 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-slate-950/20 transition hover:-translate-y-0.5 hover:bg-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 dark:bg-amber-300 dark:hover:bg-amber-200"
         aria-label={t('Open Asianode Advisor')}
       >
         <IconMessageCircle2 className="h-5 w-5" aria-hidden="true" />
