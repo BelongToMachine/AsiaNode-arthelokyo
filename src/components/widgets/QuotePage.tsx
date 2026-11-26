@@ -430,7 +430,7 @@ export default function QuotePage({ quoteCategories, quotePackages, quoteService
               <span className="font-semibold">{isOperations ? '成本说明：' : '报价说明：'}</span>
               {isOperations
                 ? '可计算的目录金额会汇总为成本参考；未定价项目标记为“按需确认”，广告费、算力和第三方费用另行核算。'
-                : '以下为参考价格，最终金额按确认的服务范围核算。域名、服务器、软件订阅、支付等第三方费用另计。'}
+                : '套餐内已包含首年服务器与域名；Token、支付手续费、软件授权及次年续费另计，最终范围以项目确认结果为准。'}
             </div>
             {isOperations ? (
               <p className="mb-5 rounded-2xl border border-slate-200/80 bg-white/80 px-5 py-4 text-xs leading-5 text-slate-600 dark:border-slate-800 dark:bg-slate-900/80 dark:text-slate-300">
@@ -508,33 +508,40 @@ export default function QuotePage({ quoteCategories, quotePackages, quoteService
 
             {!isOperations ? <section aria-labelledby="quote-packages-title" className="mt-12">
               <div className="mb-5 max-w-2xl">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">套餐参考</p>
-                <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl" id="quote-packages-title">适合不同出海阶段的套餐</h2>
-                <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">套餐便于快速确定起步范围；已包含的基础服务不重复收费，额外需求再单独核算。</p>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">IT 服务套餐</p>
+                <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl" id="quote-packages-title">从展示建站到 AI 知识自动化</h2>
+                <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">三档方案逐级扩展；选定套餐后，已包含的服务不会重复计价。</p>
               </div>
-              <div className="grid gap-4 sm:grid-cols-2 2xl:grid-cols-3">
+              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
                 {quotePackages.map((item) => {
                   const selected = selectedPackageId === item.id;
                   return (
                     <article
-                      className={'flex min-h-[220px] cursor-pointer flex-col rounded-3xl border bg-white p-5 shadow-sm shadow-slate-900/[0.025] transition duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md hover:shadow-slate-900/[0.07] sm:p-6 dark:bg-slate-900 dark:hover:shadow-black/20 ' + (selected ? 'border-amber-300 dark:border-amber-300/50' : 'border-slate-200/80 hover:border-amber-300 dark:border-slate-800 dark:hover:border-amber-300/40')}
+                      className={'flex min-h-[360px] cursor-pointer flex-col rounded-3xl border bg-white p-5 shadow-sm shadow-slate-900/[0.025] transition duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md hover:shadow-slate-900/[0.07] sm:p-6 dark:bg-slate-900 dark:hover:shadow-black/20 ' + (selected ? 'border-amber-300 dark:border-amber-300/50' : item.recommended ? 'border-amber-300/80 dark:border-amber-300/40' : 'border-slate-200/80 hover:border-amber-300 dark:border-slate-800 dark:hover:border-amber-300/40')}
                       key={item.id}
                       onClick={() => handlePackageCardClick(item.id)}
                     >
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-amber-800 dark:text-amber-200">{item.stage}</p>
+                      <div className="flex items-center justify-between gap-2">
+                        <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-amber-800 dark:text-amber-200">{item.stage}</p>
+                        {item.recommended ? <span className="rounded-full bg-amber-100 px-2.5 py-1 text-[10px] font-semibold text-amber-900 dark:bg-amber-300/15 dark:text-amber-200">推荐</span> : null}
+                      </div>
                       <h3 className="mt-2 text-lg font-semibold leading-snug">{item.name}</h3>
                       <p className="mt-2 text-xs leading-5 text-slate-600 dark:text-slate-300">{item.summary}</p>
-                      <p className="mt-3 text-xs leading-5 text-slate-500 dark:text-slate-400">{item.includes}</p>
+                      <ul className="mt-4 space-y-2 text-xs leading-5 text-slate-600 dark:text-slate-300">
+                        {item.features.map((feature) => (
+                          <li className="flex gap-2" key={feature}>
+                            <IconCheck aria-hidden="true" className="mt-0.5 shrink-0 text-amber-700 dark:text-amber-300" size={14} />
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
                       <div className="mt-auto border-t border-slate-100 pt-4 dark:border-slate-800">
-                        <div className="flex items-end justify-between gap-3">
-                          <div>
-                            <p className="text-[10px] text-slate-500 dark:text-slate-400">建设费用</p>
-                            <p className="mt-0.5 text-xl font-semibold tabular-nums">{money(item.price)}<span className="ml-1 text-xs font-normal text-slate-500 dark:text-slate-400">起</span></p>
-                          </div>
-                          <div className="text-right">
-                            <p className="text-[10px] text-slate-500 dark:text-slate-400">持续服务</p>
-                            <p className="mt-1 text-xs font-semibold tabular-nums">{item.monthly === null ? '按需求确认' : money(item.monthly) + ' / 月起'}</p>
-                          </div>
+                        <div>
+                          <p className="text-[10px] text-slate-500 dark:text-slate-400">参考建设费用</p>
+                          <p className="mt-0.5 text-xl font-semibold tabular-nums">
+                            {item.price === null ? '按需求评估' : <>{money(item.price)}<span className="ml-1 text-xs font-normal text-slate-500 dark:text-slate-400">起</span></>}
+                          </p>
+                          <p className="mt-1 text-[10px] leading-4 text-slate-500 dark:text-slate-400">{item.priceNote}</p>
                         </div>
                         <button
                           aria-pressed={selected}
@@ -555,7 +562,7 @@ export default function QuotePage({ quoteCategories, quotePackages, quoteService
                 })}
               </div>
               <p className="mt-4 rounded-2xl border border-slate-200/80 bg-white/70 px-5 py-4 text-xs leading-5 text-slate-600 dark:border-slate-800 dark:bg-slate-900/70 dark:text-slate-300">
-                B2C 套餐内为基础支付与物流接入；复杂接口、额外语言、内容制作和第三方服务费用按实际需求另行确认。
+                基础档内容录入参考原服务标准：页面不超过 10 个、产品 10 个、文章和案例各 2 篇（资料由客户提供）。AEO/GEO 为建站期基础优化；持续监测、内容运营及超出录入范围的工作另行评估。高级档按数据量、资料格式与接口范围报价。
               </p>
             </section> : null}
           </div>

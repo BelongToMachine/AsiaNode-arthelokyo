@@ -29,7 +29,9 @@ export type QuotePackage = {
   stage: string;
   summary: string;
   includes: string;
-  price: number;
+  features: string[];
+  price: number | null;
+  priceNote: string;
   monthly: number | null;
   serviceIds: number[];
   recommended?: boolean;
@@ -41,82 +43,66 @@ export const quoteCategories: Array<{ name: QuoteCategory; count: number }> = [
   { name: '数字营销技术', count: 7 },
   { name: 'AEO / GEO', count: 5 },
   { name: '电商及接口', count: 6 },
-  { name: 'AI 与自动化', count: 6 },
+  { name: 'AI 与自动化', count: 7 },
   { name: '运维与顾问', count: 5 },
 ];
 
 export const quotePackages: QuotePackage[] = [
   {
-    id: 'market-test',
-    name: '海外市场测试版',
-    stage: '先验证需求',
-    summary: '适合初步测试土耳其市场、控制首期投入。',
-    includes: '广告落地页 · 询价 · WhatsApp · 基础转化追踪 · 部署',
-    price: 6800,
-    monthly: 500,
-    serviceIds: [3, 6, 15],
+    id: 'starter-site',
+    name: '基础档 · 商品展示站',
+    stage: '建立海外品牌官网',
+    summary: '适合先建立产品展示与海外客户咨询入口的企业。',
+    includes: '商品展示独立站 · 首年服务器与域名 · 基础 SEO + AEO/GEO',
+    features: [
+      '商品展示独立站，首年服务器与域名',
+      '小语种自动翻译，适配电脑、平板和手机',
+      '图片、代码与访问速度优化',
+      '网站配色、首页与内页装修，含基础资料填充',
+      '基础 SEO 与建站期 AEO/GEO 优化',
+      '源码交付、数据备份、1 年售后服务',
+    ],
+    price: 39800,
+    priceNote: '试行参考价；网站空间续费 2,000 元/年，域名续费另计',
+    monthly: 0,
+    serviceIds: [3, 7, 13, 20, 21, 22, 23],
+  },
+  {
+    id: 'growth-site',
+    name: '进阶档 · 在线获客站',
+    stage: '接通交易与客户服务',
+    summary: '适合希望在线收款、自动回复咨询并看懂流量来源的团队。',
+    includes: '包含基础档 · Stripe 接入 · AI 客服 · 流量转化看板',
+    features: [
+      '包含基础档全部服务',
+      'Stripe 或当地可用支付接入，先核实开户主体',
+      '多语言智能体客服，支持转人工',
+      'GA4 + Search Console 流量分析与看板',
+      '客户已有 Adobe Analytics 授权时可按需接入',
+    ],
+    price: 69800,
+    priceNote: '试行参考价；支付开户资格、Token、手续费及 Adobe 授权另确认',
+    monthly: 0,
+    serviceIds: [3, 7, 13, 20, 21, 22, 23, 14, 17, 25, 32],
     recommended: true,
   },
   {
-    id: 'brand',
-    name: '品牌出海基础版',
-    stage: '建立品牌阵地',
-    summary: '为需要海外官方展示渠道的品牌与制造商准备。',
-    includes: '品牌站 · 基础 SEO · 数据统计 · 部署',
-    price: 12800,
-    monthly: 800,
-    serviceIds: [3, 7, 13, 14],
-  },
-  {
-    id: 'b2b',
-    name: 'B2B 外贸获客专业版',
-    stage: '获取采购询盘',
-    summary: '适合经销商拓展、批发询价与线索跟进。',
-    includes: 'B2B 站 · 询价管理 · SEO · 广告追踪 · 部署',
-    price: 19800,
-    monthly: 1500,
-    serviceIds: [3, 8, 13, 15],
-    recommended: true,
-  },
-  {
-    id: 'b2c',
-    name: 'B2C 电商出海版',
-    stage: '在线销售',
-    summary: '适合已有销售准备、需要承接在线交易的团队。',
-    includes: '电商站 · 基础支付及物流集成 · 广告追踪',
-    price: 49800,
-    monthly: 3000,
-    serviceIds: [3, 9, 13, 15, 25, 26],
-  },
-  {
-    id: 'ai-search',
-    name: 'AI 搜索曝光优化版',
-    stage: '提升 AI 可见度',
-    summary: '梳理品牌在答案引擎与生成式检索中的呈现。',
-    includes: 'AEO/GEO 诊断 · 答案优化 · 生成式检索优化 · 技术优化',
-    price: 19800,
-    monthly: 3000,
-    serviceIds: [20, 21, 22, 23],
-  },
-  {
-    id: 'search-growth',
-    name: 'SEO + AEO + GEO 整合增长版',
-    stage: '长期搜索增长',
-    summary: '将自然搜索、问答优化与 AI 检索纳入同一计划。',
-    includes: '搜索优化 · AI 检索优化 · 品牌知识结构 · 初期监测',
-    price: 29800,
-    monthly: 5000,
-    serviceIds: [13, 20, 21, 22, 23],
-  },
-  {
-    id: 'enterprise',
-    name: '企业数字化定制版',
-    stage: '复杂业务协同',
-    summary: '按现有系统、流程、数据和接口范围评估。',
-    includes: '独立站 · CRM / ERP · 数据看板 · AI 客服 · 自动化',
-    price: 80000,
-    monthly: null,
-    serviceIds: [],
+    id: 'intelligence-site',
+    name: '高级档 · AI 知识自动化',
+    stage: '打通企业知识与业务流程',
+    summary: '适合产品资料和业务知识较多、需要自动更新与智能问答的企业。',
+    includes: '包含进阶档 · 数据清洗 · RAG 知识库 · 自动化流程',
+    features: [
+      '包含进阶档全部服务',
+      '清洗并规范产品、文档及业务数据',
+      '企业 RAG 知识库，回答可追溯来源',
+      '自动导入、更新知识和生成客户答复',
+      'CRM、ERP 或商品系统对接可作为扩展项单独评估',
+    ],
+    price: null,
+    priceNote: '按数据量、资料格式与接口范围评估',
+    monthly: 0,
+    serviceIds: [3, 7, 13, 20, 21, 22, 23, 14, 17, 25, 32, 31, 33, 42],
   },
 ];
 
@@ -162,4 +148,5 @@ export const quoteServices: QuoteService[] = [
   { id: 39, name: 'B2C 电商系统运维', category: '运维与顾问', status: '推荐选配', summary: '持续维护交易、支付与物流运行。', deliverables: '订单、支付、物流异常、安全更新、备份', effort: '每月 5–10 小时', cost: '人力 + 服务器 + API', min: 2000, max: 4000, billing: '每月', unit: '月' },
   { id: 40, name: '企业 IT 技术顾问', category: '运维与顾问', status: '可选', summary: '持续提供技术规划、成本控制与选型建议。', deliverables: '架构评估、技术采购建议、阶段性规划', effort: '每月 8–20 小时', cost: '人力 + Token', min: 3000, max: 8000, billing: '每月', unit: '月' },
   { id: 41, name: '定制开发及技术支持', category: '运维与顾问', status: '可选', summary: '为已交付项目增加原范围外的新功能。', deliverables: '开发、测试、部署', effort: '按实际工时', cost: '人力 + Token', min: 300, max: 500, billing: '每小时', unit: '小时' },
+  { id: 42, name: '企业数据清洗与知识治理', category: 'AI 与自动化', status: '可选', summary: '整理产品、官网、文档和业务数据，形成可供知识库检索的统一资料。', deliverables: '数据去重、字段规范、格式转换、知识分段与导入校验', effort: '按数据量与资料质量评估', cost: '人力 + 数据处理 + Token', min: null, max: null, billing: '按需', unit: '项目', rateNote: '按数据量与数据格式评估' },
 ];
